@@ -2,13 +2,17 @@ package se.arctosoft.tvchat;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -67,10 +71,14 @@ public class ChatActivity extends AppCompatActivity {
             return;
         }
 
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Toolbar myToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+
+        ActionBar aB = getSupportActionBar();
+        if (aB != null) {
+            aB.setDisplayHomeAsUpEnabled(true);
+            aB.setTitle(channel.getName());
         }
-        setTitle(channel.getName());
 
         if (ParseUser.getCurrentUser() != null) { // start with existing user
             setupMessagePosting();
@@ -86,6 +94,15 @@ public class ChatActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.clear();
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_chat, menu);
+
+        return true;
     }
 
     // Setup button event handler which posts the entered message to Parse

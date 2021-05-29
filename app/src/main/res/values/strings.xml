@@ -1,9 +1,15 @@
 <resources>
     <string name="app_name">TV chat</string>
+    <string name="channels_title">TV chat</string>
+    <string name="channels_message">Chatta med andra och kommentera det som visas på TV!</string>
 
     <string name="message_hint">Skriv något</string>
     <string name="send">Skicka</string>
     <string name="profile_me">Min profilbild</string>
     <string name="profile_other">Annan persons profilbild</string>
     <string name="channel_text">Visas nu: %1$s</string>
+    <string name="channel_menu_help">Hjälp</string>
+
+    <string name="settings">Min profil</string>
+    <string name="about">Om</string>
 </resources>
