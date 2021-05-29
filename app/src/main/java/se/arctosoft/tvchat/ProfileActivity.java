@@ -85,7 +85,12 @@ public class ProfileActivity extends AppCompatActivity {
                 e.printStackTrace();
                 btnSave.setEnabled(true);
                 setLoading(false);
-                Toast.makeText(ProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                String message = e.getMessage();
+                if (message != null && message.startsWith("Account already exists")) {
+                    Toast.makeText(ProfileActivity.this, getString(R.string.profile_save_already_taken), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(ProfileActivity.this, getString(R.string.fel, message), Toast.LENGTH_SHORT).show();
+                }
             } else {
                 btnSave.setEnabled(true);
                 setLoading(false);
