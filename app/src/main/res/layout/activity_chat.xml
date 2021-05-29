@@ -28,7 +28,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView"
-        style="@style/CustomCardViewStyle"
+        style="@style/BottomCardViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardElevation="12dp"

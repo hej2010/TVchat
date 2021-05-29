@@ -6,34 +6,47 @@
     android:layout_height="match_parent"
     tools:context=".ChannelActivity">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/txtTitle"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
+        style="@style/TopCardViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/channels_title"
-        android:textAlignment="center"
-        android:textColor="@color/teal_700"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:cardElevation="1dp"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/txtMessage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/channels_message"
-        android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@id/txtTitle" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/channels_title"
+                android:textAlignment="center"
+                android:textColor="@color/teal_700"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/channels_message"
+                android:textAlignment="center" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvChannels"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@id/lLButtons"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtMessage" />
-
+        app:layout_constraintTop_toBottomOf="@id/cardView" />
 
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/progressBar"
@@ -57,14 +70,18 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/settings" />
+            android:text="@string/settings"
+            app:icon="@drawable/ic_baseline_settings_24"
+            app:iconGravity="textTop" />
 
         <com.google.android.material.button.MaterialButton
             style="?android:buttonBarButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/about" />
+            android:text="@string/about"
+            app:icon="@drawable/ic_outline_info_24"
+            app:iconGravity="textTop" />
 
     </LinearLayout>
 
