@@ -2,18 +2,17 @@ package se.arctosoft.tvchat;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.parse.ParseACL;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.livequery.LiveQueryException;
@@ -68,6 +67,7 @@ public class ChatActivity extends AppCompatActivity {
             return;
         }
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle(channel.getName());
 
         if (ParseUser.getCurrentUser() != null) { // start with existing user
@@ -77,11 +77,20 @@ public class ChatActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            this.finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     // Setup button event handler which posts the entered message to Parse
     void setupMessagePosting() {
         // Find the text field and button
         etMessage = findViewById(R.id.etMessage);
-        ImageButton btSend = findViewById(R.id.btSend);
+        ImageView btSend = findViewById(R.id.btSend);
         rvChat = findViewById(R.id.rvChat);
         mMessages = new LinkedList<>();
         mFirstLoad = true;

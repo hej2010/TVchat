@@ -21,8 +21,6 @@
         android:hint="@string/message_hint"
         android:labelFor="@id/etMessage"
         android:textColorHint="@color/teal_700"
-        app:counterEnabled="true"
-        app:counterMaxLength="500"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btSend"
         app:layout_constraintStart_toStartOf="parent">
@@ -33,27 +31,31 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/btSend"
             android:layout_toStartOf="@+id/btSend"
+            android:backgroundTint="@color/white"
             android:gravity="top"
             android:imeOptions="actionSend"
             android:importantForAutofill="no"
             android:inputType="textShortMessage|textCapSentences"
-            android:maxLength="520"
+            android:maxLength="500"
             android:maxLines="1"
             android:textColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btSend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:layout_marginTop="7dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
         android:contentDescription="@string/send"
+        android:focusable="true"
         android:gravity="center"
+        android:padding="11dp"
         android:src="@drawable/ic_baseline_send_24"
-        android:tint="@color/teal_700"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tILTitle" />
+        app:tint="@color/teal_700" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
