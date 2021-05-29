@@ -6,12 +6,17 @@ import com.parse.ParseUser;
 
 @ParseClassName("Message")
 public class Message extends ParseObject {
-    public static final String USER_KEY = "u";
+    public static final String USER_NAME_KEY = "u";
+    public static final String USER_ID_KEY = "i";
     public static final String BODY_KEY = "b";
     public static final String CHANNEL_KEY = "c";
 
-    public ParseUser getUser() {
-        return getParseUser(USER_KEY);
+    public String getUserName() {
+        return getString(USER_NAME_KEY);
+    }
+
+    public String getUserId() {
+        return getString(USER_ID_KEY);
     }
 
     public String getBody() {
@@ -22,8 +27,11 @@ public class Message extends ParseObject {
         return (Channel) getParseObject(CHANNEL_KEY);
     }
 
-    public void setUser(ParseUser user) {
-        put(USER_KEY, user);
+    public void setUserName(String username) {
+        put(USER_NAME_KEY, username);
+    }
+    public void setUserId(String userId) {
+        put(USER_ID_KEY, userId);
     }
 
     public void setBody(String body) {

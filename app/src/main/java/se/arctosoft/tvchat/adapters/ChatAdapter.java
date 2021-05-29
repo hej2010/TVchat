@@ -1,6 +1,7 @@
 package se.arctosoft.tvchat.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -22,14 +24,15 @@ import se.arctosoft.tvchat.R;
 import se.arctosoft.tvchat.data.Message;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHolder> {
+    private static final String TAG = "ChatAdapter";
     private static final int MESSAGE_OUTGOING = 123;
     private static final int MESSAGE_INCOMING = 321;
     private final List<Message> mMessages;
-    private final Context mContext;
+    private final AppCompatActivity mContext;
     private final String mUserId;
     private static final Map<String, String> iconMap = new HashMap<>();
 
-    public ChatAdapter(Context context, String mUserId, List<Message> messages) {
+    public ChatAdapter(AppCompatActivity context, String mUserId, List<Message> messages) {
         mMessages = messages;
         this.mUserId = mUserId;
         mContext = context;
@@ -51,7 +54,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
 
     private boolean isMe(int position) {
         Message message = mMessages.get(position);
-        return message.getUser() != null && message.getUser().getUsername().equals(mUserId);
+        return message.getUserId() != null && message.getUserId().equals(mUserId);
     }
 
     @NonNull
@@ -77,11 +80,11 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
         Message message = mMessages.get(position);
 
         Glide.with(holder.body.getContext())
-                .load(getProfileUrl(message.getUser().getUsername()))
+                .load(getProfileUrl(message.getUserId()))
                 .circleCrop() // create an effect of a round profile picture
                 .into(holder.icon);
         holder.body.setText(message.getBody());
-        holder.name.setText(message.getUser().getUsername()); // in addition to message show user ID
+        holder.name.setText(message.getUserName()); // in addition to message show user ID
     }
 
     static class MessageViewHolder extends RecyclerView.ViewHolder {
@@ -110,7 +113,9 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Log.e(TAG, "getProfileUrl: get for " + hex);
         String s = "https://www.gravatar.com/avatar/" + hex + "?d=identicon";
+        //String s = "https://avatars.dicebear.com/api/human/" + userId + ".svg";
         iconMap.put(userId, s);
         return s;
     }

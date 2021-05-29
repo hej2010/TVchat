@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -82,9 +83,14 @@ public class ProfileActivity extends AppCompatActivity {
             }
             if (e != null) {
                 e.printStackTrace();
+                btnSave.setEnabled(true);
+                setLoading(false);
+                Toast.makeText(ProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             } else {
                 btnSave.setEnabled(true);
                 setLoading(false);
+                Toast.makeText(ProfileActivity.this, getString(R.string.profile_saved), Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
     }

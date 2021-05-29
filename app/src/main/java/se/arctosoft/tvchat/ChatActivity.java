@@ -134,7 +134,9 @@ public class ChatActivity extends AppCompatActivity {
             Message message = new Message();
             message.setACL(acl);
             message.setBody(data);
-            message.setUser(ParseUser.getCurrentUser());
+            ParseUser user = ParseUser.getCurrentUser();
+            message.setUserName(user.getUsername());
+            message.setUserId(user.getObjectId());
             message.setChannel(channel);
             message.saveInBackground(e -> {
                 if (isFinishing() || isDestroyed()) {
@@ -192,7 +194,7 @@ public class ChatActivity extends AppCompatActivity {
 
 
         // This query can even be more granular (i.e. only refresh if the entry was added by some other user)
-        parseQuery.whereNotEqualTo(Message.USER_KEY, ParseUser.getCurrentUser());
+        parseQuery.whereNotEqualTo(Message.USER_ID_KEY, ParseUser.getCurrentUser().getObjectId());
         parseQuery.whereEqualTo(Message.CHANNEL_KEY, channel);
 
         // Connect to Parse server
