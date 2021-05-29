@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/channels_title"
                 android:textAlignment="center"
-                android:textColor="@color/teal_700"
+                android:textColor="@color/colorPrimary"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -53,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:indeterminate="true"
-        app:layout_constraintTop_toBottomOf="@id/txtMessage" />
+        app:layout_constraintBottom_toTopOf="@id/lLButtons" />
 
     <LinearLayout
         android:id="@+id/lLButtons"
@@ -66,15 +66,17 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnProfile"
             style="?android:buttonBarButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/settings"
-            app:icon="@drawable/ic_baseline_settings_24"
+            android:text="@string/my_profile"
+            app:icon="@drawable/ic_outline_account_circle_24"
             app:iconGravity="textTop" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAbout"
             style="?android:buttonBarButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

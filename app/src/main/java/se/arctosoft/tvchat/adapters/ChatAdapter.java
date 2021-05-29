@@ -51,7 +51,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
 
     private boolean isMe(int position) {
         Message message = mMessages.get(position);
-        return message.getUserId() != null && message.getUserId().equals(mUserId);
+        return message.getUser() != null && message.getUser().getUsername().equals(mUserId);
     }
 
     @NonNull
@@ -77,11 +77,11 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
         Message message = mMessages.get(position);
 
         Glide.with(holder.body.getContext())
-                .load(getProfileUrl(message.getUserId()))
+                .load(getProfileUrl(message.getUser().getUsername()))
                 .circleCrop() // create an effect of a round profile picture
                 .into(holder.icon);
         holder.body.setText(message.getBody());
-        holder.name.setText(message.getUserId()); // in addition to message show user ID
+        holder.name.setText(message.getUser().getUsername()); // in addition to message show user ID
     }
 
     static class MessageViewHolder extends RecyclerView.ViewHolder {

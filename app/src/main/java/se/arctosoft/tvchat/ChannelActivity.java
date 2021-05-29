@@ -1,9 +1,11 @@
 package se.arctosoft.tvchat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,6 +35,7 @@ public class ChannelActivity extends AppCompatActivity {
     private List<Channel> mChannels;
     private ChannelAdapter mAdapter;
     private LinearProgressIndicator progressBar;
+    private Button btnProfile, btnAbout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,9 @@ public class ChannelActivity extends AppCompatActivity {
     private void init() {
         rvChannels = findViewById(R.id.rvChannels);
         progressBar = findViewById(R.id.progressBar);
+        btnProfile = findViewById(R.id.btnProfile);
+        btnProfile.setEnabled(false);
+        btnAbout = findViewById(R.id.btnAbout);
         mChannels = new ArrayList<>();
 
         mAdapter = new ChannelAdapter(ChannelActivity.this, mChannels);
@@ -52,8 +58,11 @@ public class ChannelActivity extends AppCompatActivity {
         rvChannels.setAdapter(mAdapter);
         rvChannels.setLayoutManager(linearLayoutManager);
 
+        btnProfile.setOnClickListener(v -> startActivity(new Intent(ChannelActivity.this, ProfileActivity.class)));
+
         if (ParseUser.getCurrentUser() != null) { // start with existing user
-            loadChannels();
+            btnProfile.setEnabled(true);
+            ParseUser.getCurrentUser().fetchInBackground((object, e) -> loadChannels());
         } else { // If not logged in, login as a new anonymous user
             login();
         }
@@ -69,6 +78,7 @@ public class ChannelActivity extends AppCompatActivity {
                 Log.e(TAG, "Anonymous login failed: ", e);
                 new Handler().postDelayed(this::login, 2000);
             } else {
+                btnProfile.setEnabled(true);
                 loadChannels();
             }
         });

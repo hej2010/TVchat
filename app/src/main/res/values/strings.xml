@@ -10,6 +10,11 @@
     <string name="channel_text">Visas nu: %1$s</string>
     <string name="channel_menu_help">Hjälp</string>
 
-    <string name="settings">Min profil</string>
+    <string name="my_profile">Min profil</string>
     <string name="about">Om</string>
+
+    <string name="profile_allowed_digits">abcdefghijklmnopqrstuvwxyzåäöABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ0123456789-_</string>
+    <string name="profile_username_hint">Visningsnamn</string>
+    <string name="profile_username_text">Ditt visningsnamn kan vara mellan 3 till 25 tecken och innehålla bokstäver, siffor, - och _</string>
+    <string name="profile_save">Uppdatera profil</string>
 </resources>
