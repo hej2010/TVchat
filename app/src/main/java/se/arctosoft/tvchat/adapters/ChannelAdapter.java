@@ -1,6 +1,7 @@
 package se.arctosoft.tvchat.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+import se.arctosoft.tvchat.ChatActivity;
 import se.arctosoft.tvchat.R;
 import se.arctosoft.tvchat.data.Channel;
 
@@ -49,7 +51,8 @@ public class ChannelAdapter extends RecyclerView.Adapter<ChannelAdapter.MessageV
                 .into(holder.ivChannelIcon);
         holder.clickable.setOnClickListener(v -> {
             Log.e(TAG, "onClick: " + channel.getName());
-            // TODO start chat
+            mContext.startActivity(new Intent(mContext, ChatActivity.class)
+                    .putExtra(ChatActivity.EXTRA_CHANNEL, channel));
         });
     }
 

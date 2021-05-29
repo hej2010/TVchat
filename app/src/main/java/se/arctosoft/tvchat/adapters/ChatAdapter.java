@@ -27,7 +27,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
     private final List<Message> mMessages;
     private final Context mContext;
     private final String mUserId;
-    private final Map<String, String> iconMap = new HashMap<>();
+    private static final Map<String, String> iconMap = new HashMap<>();
 
     public ChatAdapter(Context context, String mUserId, List<Message> messages) {
         mMessages = messages;
@@ -61,76 +61,43 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
 
         LayoutInflater inflater = LayoutInflater.from(context);
 
+        View contactView;
         if (viewType == MESSAGE_INCOMING) {
-            View contactView = inflater.inflate(R.layout.message_incoming, parent, false);
-            return new IncomingMessageViewHolder(contactView);
+            contactView = inflater.inflate(R.layout.message_incoming, parent, false);
         } else if (viewType == MESSAGE_OUTGOING) {
-            View contactView = inflater.inflate(R.layout.message_outgoing, parent, false);
-            return new OutgoingMessageViewHolder(contactView);
+            contactView = inflater.inflate(R.layout.message_outgoing, parent, false);
         } else {
             throw new IllegalArgumentException("Unknown view type");
         }
+        return new MessageViewHolder(contactView);
     }
 
     @Override
     public void onBindViewHolder(MessageViewHolder holder, int position) {
         Message message = mMessages.get(position);
-        holder.bindMessage(message);
+
+        Glide.with(holder.body.getContext())
+                .load(getProfileUrl(message.getUserId()))
+                .circleCrop() // create an effect of a round profile picture
+                .into(holder.icon);
+        holder.body.setText(message.getBody());
+        holder.name.setText(message.getUserId()); // in addition to message show user ID
     }
 
-    public static abstract class MessageViewHolder extends RecyclerView.ViewHolder {
-        public MessageViewHolder(@NonNull View itemView) {
+    static class MessageViewHolder extends RecyclerView.ViewHolder {
+        private final ImageView icon;
+        private final TextView body, name;
+
+        private MessageViewHolder(View itemView) {
             super(itemView);
-        }
-
-        abstract void bindMessage(Message message);
-    }
-
-    public class IncomingMessageViewHolder extends MessageViewHolder {
-        ImageView imageOther;
-        TextView body;
-        TextView name;
-
-        public IncomingMessageViewHolder(View itemView) {
-            super(itemView);
-            imageOther = itemView.findViewById(R.id.ivProfileOther);
+            icon = itemView.findViewById(R.id.ivIcon);
             body = itemView.findViewById(R.id.tvBody);
             name = itemView.findViewById(R.id.tvName);
-        }
-
-        @Override
-        public void bindMessage(Message message) {
-            Glide.with(mContext)
-                    .load(getProfileUrl(message.getUserId()))
-                    .circleCrop() // create an effect of a round profile picture
-                    .into(imageOther);
-            body.setText(message.getBody());
-            name.setText(message.getUserId()); // in addition to message show user ID
-        }
-    }
-
-    public class OutgoingMessageViewHolder extends MessageViewHolder {
-        ImageView imageMe;
-        TextView body;
-
-        public OutgoingMessageViewHolder(View itemView) {
-            super(itemView);
-            imageMe = itemView.findViewById(R.id.ivProfileMe);
-            body = itemView.findViewById(R.id.tvBody);
-        }
-
-        @Override
-        public void bindMessage(Message message) {
-            Glide.with(mContext)
-                    .load(getProfileUrl(message.getUserId()))
-                    .circleCrop() // create an effect of a round profile picture
-                    .into(imageMe);
-            body.setText(message.getBody());
         }
     }
 
     // Create a gravatar image based on the hash value obtained from userId
-    private String getProfileUrl(final String userId) {
+    private static String getProfileUrl(final String userId) {
         if (iconMap.containsKey(userId)) {
             return iconMap.get(userId);
         }

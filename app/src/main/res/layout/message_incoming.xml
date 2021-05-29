@@ -3,27 +3,30 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clipToPadding="false"
-    android:paddingVertical="10dp"
+    android:paddingVertical="5dp"
     android:paddingStart="15dp"
     android:paddingEnd="60dp">
+
+    <ImageView
+        android:id="@+id/ivIcon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/profile_other"
+        android:src="@mipmap/ic_launcher" />
 
     <TextView
         android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/ivProfileOther"
+        android:layout_alignTop="@+id/ivIcon"
         android:layout_marginStart="15dp"
-        android:layout_toEndOf="@+id/ivProfileOther"
+        android:layout_toEndOf="@+id/ivIcon"
         android:paddingBottom="4dp"
-        android:textColor="@color/teal_700" />
-
-    <ImageView
-        android:id="@+id/ivProfileOther"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_alignParentStart="true"
-        android:contentDescription="@string/profile_other"
-        android:src="@mipmap/ic_launcher" />
+        android:text="myUsername"
+        android:textColor="@color/teal_700"
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/tvBody"
@@ -34,8 +37,9 @@
         android:background="@drawable/message_incoming"
         android:elevation="2dp"
         android:paddingHorizontal="16dp"
-        android:paddingVertical="12dp"
+        android:paddingVertical="9dp"
+        android:text="a long message"
         android:textColor="@color/black"
         android:textIsSelectable="true"
-        android:textSize="18sp" />
+        android:textSize="14sp" />
 </RelativeLayout>

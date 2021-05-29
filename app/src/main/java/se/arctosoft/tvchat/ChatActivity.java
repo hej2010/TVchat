@@ -6,10 +6,14 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.parse.ParseACL;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.livequery.LiveQueryException;
@@ -29,7 +33,7 @@ import se.arctosoft.tvchat.data.Message;
 public class ChatActivity extends AppCompatActivity {
     private static final String TAG = "ChatActivity";
     static final int MAX_CHAT_MESSAGES_TO_SHOW = 50;
-    static final String EXTRA_CHANNEL = "c";
+    public static final String EXTRA_CHANNEL = "c";
 
     private EditText etMessage;
     private RecyclerView rvChat;
@@ -46,15 +50,25 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            Object c = extras.get(EXTRA_CHANNEL);
-            if (!(c instanceof Channel)) {
-                finish();
-                return;
+        if (savedInstanceState != null) {
+            channel = (Channel) savedInstanceState.getParcelable(EXTRA_CHANNEL);
+        } else {
+            Bundle extras = getIntent().getExtras();
+            if (extras != null) {
+                Object c = extras.get(EXTRA_CHANNEL);
+                if (!(c instanceof Channel)) {
+                    finish();
+                    return;
+                }
+                channel = (Channel) c;
             }
-            channel = (Channel) c;
         }
+        if (channel == null) {
+            finish();
+            return;
+        }
+
+        setTitle(channel.getName());
 
         if (ParseUser.getCurrentUser() != null) { // start with existing user
             setupMessagePosting();
@@ -82,19 +96,23 @@ public class ChatActivity extends AppCompatActivity {
             if (parseLiveQueryClient == null) {
                 setupLiveQueries();
             }
-            String data = etMessage.getText().toString();
+            final String data = etMessage.getText().toString();
+            if (data.trim().isEmpty()) {
+                return;
+            }
+            ParseACL acl = new ParseACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(false);
             Message message = new Message();
+            message.setACL(acl);
             message.setBody(data);
             message.setUserId(ParseUser.getCurrentUser().getObjectId());
             message.setChannel(channel);
             message.saveInBackground(e -> {
                 if (e == null) {
-                    boolean scrollDown = !rvChat.canScrollVertically(1);
                     mMessages.add(0, message);
                     mAdapter.notifyItemInserted(0);
-                    if (scrollDown) {
-                        rvChat.scrollToPosition(0);
-                    }
+                    rvChat.scrollToPosition(0);
                     Toast.makeText(ChatActivity.this, "Successfully created message on Parse", Toast.LENGTH_SHORT).show();
                 } else {
                     Log.e(TAG, "Failed to save message", e);
@@ -144,6 +162,7 @@ public class ChatActivity extends AppCompatActivity {
 
         // This query can even be more granular (i.e. only refresh if the entry was added by some other user)
         parseQuery.whereNotEqualTo(Message.USER_ID_KEY, ParseUser.getCurrentUser().getObjectId());
+        parseQuery.whereEqualTo(Message.CHANNEL_KEY, channel);
 
         // Connect to Parse server
         SubscriptionHandling<Message> subscriptionHandling = parseLiveQueryClient.subscribe(parseQuery);
@@ -166,6 +185,7 @@ public class ChatActivity extends AppCompatActivity {
         ParseQuery<Message> query = ParseQuery.getQuery(Message.class);
         // Configure limit and sort order
         query.setLimit(MAX_CHAT_MESSAGES_TO_SHOW);
+        query.whereEqualTo(Channel.NAME_KEY, channel);
         // get the latest 50 messages, order will show up newest to oldest of this group
         query.orderByDescending("createdAt");
         // Execute query to fetch all messages from Parse asynchronously
@@ -184,6 +204,12 @@ public class ChatActivity extends AppCompatActivity {
                 Log.e("message", "Error Loading Messages" + e);
             }
         });
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(EXTRA_CHANNEL, channel);
     }
 
     @Override

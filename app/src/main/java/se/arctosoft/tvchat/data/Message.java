@@ -1,7 +1,5 @@
 package se.arctosoft.tvchat.data;
 
-import androidx.annotation.NonNull;
-
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 
@@ -33,11 +31,5 @@ public class Message extends ParseObject {
 
     public void setChannel(Channel channel) {
         put(CHANNEL_KEY, channel);
-    }
-
-    @NonNull
-    @Override
-    public String toString() {
-        return "user: " + getUserId() + ", body: " + getBody() + ", channel: " + getChannel();
     }
 }

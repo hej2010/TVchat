@@ -1,7 +1,5 @@
 package se.arctosoft.tvchat.data;
 
-import androidx.annotation.NonNull;
-
 import com.parse.ParseClassName;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -34,11 +32,5 @@ public class Channel extends ParseObject {
 
     public void setIcon(ParseFile icon) {
         put(ICON_KEY, icon);
-    }
-
-    @NonNull
-    @Override
-    public String toString() {
-        return "name: " + getName() + ", order: " + getOrder() + ", icon: " + getIcon();
     }
 }

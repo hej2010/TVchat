@@ -3,29 +3,42 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clipToPadding="false"
-    android:paddingVertical="10dp"
+    android:paddingVertical="4dp"
     android:paddingStart="60dp"
     android:paddingEnd="15dp">
+
+    <ImageView
+        android:id="@+id/ivIcon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentEnd="true"
+        android:contentDescription="@string/profile_other"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ivIcon"
+        android:layout_marginEnd="15dp"
+        android:layout_toStartOf="@+id/ivIcon"
+        android:paddingBottom="4dp"
+        android:text="myUsername"
+        android:textColor="@color/teal_700"
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/tvBody"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_toStartOf="@+id/ivProfileMe"
-        android:background="@drawable/message_outgoing"
+        android:layout_below="@+id/tvName"
+        android:layout_alignEnd="@+id/tvName"
+        android:background="@drawable/message_incoming"
         android:elevation="2dp"
-        android:padding="8dp"
-        android:textColor="@android:color/white"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="9dp"
+        android:text="a long message"
+        android:textColor="@color/black"
         android:textIsSelectable="true"
-        android:textSize="18sp" />
-
-    <ImageView
-        android:id="@+id/ivProfileMe"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_alignParentEnd="true"
-        android:contentDescription="@string/profile_me"
-        android:src="@mipmap/ic_launcher" />
-
+        android:textSize="14sp" />
 </RelativeLayout>

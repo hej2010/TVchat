@@ -78,5 +78,13 @@ public class ChannelActivity extends AppCompatActivity {
                 Log.e("channel", "Error Loading Channels " + e);
             }
         });
+        //getChannelSchedule();
+    }
+
+    private void getChannelSchedule() {
+        new Thread(() -> {
+            // https://my.iptv.community/epg_temp_dl/output-epgs/sweden.xml
+            //
+        }).start();
     }
 }
