@@ -67,7 +67,9 @@ public class ChatActivity extends AppCompatActivity {
             return;
         }
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         setTitle(channel.getName());
 
         if (ParseUser.getCurrentUser() != null) { // start with existing user
@@ -118,6 +120,9 @@ public class ChatActivity extends AppCompatActivity {
             message.setUserId(ParseUser.getCurrentUser().getObjectId());
             message.setChannel(channel);
             message.saveInBackground(e -> {
+                if (isFinishing() || isDestroyed()) {
+                    return;
+                }
                 if (e == null) {
                     mMessages.add(0, message);
                     mAdapter.notifyItemInserted(0);
@@ -200,6 +205,9 @@ public class ChatActivity extends AppCompatActivity {
         // Execute query to fetch all messages from Parse asynchronously
         // This is equivalent to a SELECT query with SQL
         query.findInBackground((messages, e) -> {
+            if (isFinishing() || isDestroyed()) {
+                return;
+            }
             if (e == null) {
                 mMessages.clear();
                 mMessages.addAll(messages);
