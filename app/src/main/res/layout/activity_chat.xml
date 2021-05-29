@@ -9,53 +9,69 @@
         android:id="@+id/rvChat"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/tILTitle"
+        app:layout_constraintBottom_toTopOf="@id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tILTitle"
-        android:layout_width="0dp"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
+        style="@style/CustomCardViewStyle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/message_hint"
-        android:labelFor="@id/etMessage"
-        android:textColorHint="@color/teal_700"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btSend"
-        app:layout_constraintStart_toStartOf="parent">
+        app:cardElevation="12dp"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-        <EditText
-            android:id="@+id/etMessage"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/btSend"
-            android:layout_toStartOf="@+id/btSend"
-            android:backgroundTint="@color/white"
-            android:gravity="top"
-            android:imeOptions="actionSend"
-            android:importantForAutofill="no"
-            android:inputType="textShortMessage|textCapSentences"
-            android:maxLength="500"
-            android:maxLines="1"
-            android:textColor="@color/black" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/btSend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:background="?android:attr/selectableItemBackground"
-        android:clickable="true"
-        android:contentDescription="@string/send"
-        android:focusable="true"
-        android:gravity="center"
-        android:padding="11dp"
-        android:src="@drawable/ic_baseline_send_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@color/teal_700" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tILTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/message_hint"
+                android:labelFor="@id/etMessage"
+                android:textColorHint="@color/teal_700"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btSend"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <EditText
+                    android:id="@+id/etMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/btSend"
+                    android:layout_toStartOf="@+id/btSend"
+                    android:backgroundTint="@color/white"
+                    android:gravity="top"
+                    android:imeOptions="actionSend"
+                    android:importantForAutofill="no"
+                    android:inputType="textShortMessage|textCapSentences"
+                    android:maxLength="500"
+                    android:maxLines="1"
+                    android:textColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/btSend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:contentDescription="@string/send"
+                android:focusable="true"
+                android:gravity="center"
+                android:padding="11dp"
+                android:src="@drawable/ic_baseline_send_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:tint="@color/teal_700" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
