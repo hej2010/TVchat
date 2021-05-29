@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:clipToPadding="false"
+    app:cardCornerRadius="13dp">
+
+    <RelativeLayout
+        android:id="@+id/rLContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingVertical="10dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="6dp">
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/ivChannelIcon"
+            android:layout_marginStart="15dp"
+            android:layout_toStartOf="@id/ivArrow"
+            android:layout_toEndOf="@+id/ivChannelIcon"
+            android:paddingBottom="4dp"
+            android:text="SVT 1"
+            android:textColor="@color/teal_700"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/ivChannelIcon"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_alignParentStart="true"
+            android:contentDescription="@string/profile_other"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tvBody"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvName"
+            android:layout_alignStart="@+id/tvName"
+            android:layout_toStartOf="@id/ivArrow"
+            android:text="@string/channel_text"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/ivArrow"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="@string/profile_other"
+            android:src="@drawable/ic_baseline_keyboard_arrow_right_24" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TV chat</string>
+
+    <string name="message_hint">Skriv något</string>
+    <string name="send">Skicka</string>
+    <string name="profile_me">Min profilbild</string>
+    <string name="profile_other">Annan persons profilbild</string>
+    <string name="channel_text">Visas nu: %1$s</string>
+</resources>
