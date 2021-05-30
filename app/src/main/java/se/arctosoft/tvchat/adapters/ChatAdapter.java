@@ -33,6 +33,7 @@ import java.util.Map;
 
 import se.arctosoft.tvchat.R;
 import se.arctosoft.tvchat.data.Message;
+import se.arctosoft.tvchat.utils.Toaster;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHolder> {
     private static final String TAG = "ChatAdapter";
@@ -137,7 +138,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
                 report.setACL(acl);
                 report.put("u", ParseUser.getCurrentUser());
                 report.put("m", message);
-                Toast.makeText(mActivity, mActivity.getString(R.string.message_reported), Toast.LENGTH_SHORT).show();
+                Toaster.getInstance(mActivity).showShort(mActivity.getString(R.string.message_reported));
                 report.saveInBackground(e -> {
                     int pos = holder.getBindingAdapterPosition();
                     if (e != null) {
@@ -149,10 +150,10 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
                 message.deleteInBackground(e -> {
                     if (e != null) {
                         e.printStackTrace();
-                        Toast.makeText(mActivity, "Failed to delete message", Toast.LENGTH_SHORT).show();
+                        Toaster.getInstance(mActivity).showShort(mActivity.getString(R.string.message_deleted_error));
                     } else {
                         removeMessageAt(holder.getBindingAdapterPosition());
-                        Toast.makeText(mActivity, mActivity.getString(R.string.message_deleted), Toast.LENGTH_SHORT).show();
+                        Toaster.getInstance(mActivity).showShort(mActivity.getString(R.string.message_deleted));
                     }
                 });
             }

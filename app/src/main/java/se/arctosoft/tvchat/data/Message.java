@@ -1,5 +1,7 @@
 package se.arctosoft.tvchat.data;
 
+import androidx.annotation.Nullable;
+
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 
@@ -40,5 +42,13 @@ public class Message extends ParseObject {
 
     public void setChannel(Channel channel) {
         put(CHANNEL_KEY, channel);
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj instanceof Message) {
+            return (((Message) obj).getObjectId().equals(getObjectId()));
+        }
+        return false;
     }
 }
