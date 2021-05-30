@@ -105,6 +105,10 @@ public class ChannelActivity extends AppCompatActivity {
             } else {
                 new Handler().postDelayed(this::loadChannels, 2000);
                 Log.e("channel", "Error Loading Channels " + e);
+                if (e.getMessage() != null && e.getMessage().startsWith("Invalid session")) {
+                    ParseUser.logOut();
+                    ParseAnonymousUtils.logInInBackground();
+                }
             }
         });
         //getChannelSchedule();

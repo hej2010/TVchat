@@ -2,7 +2,6 @@ package se.arctosoft.tvchat.data;
 
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
-import com.parse.ParseUser;
 
 @ParseClassName("Message")
 public class Message extends ParseObject {
@@ -30,6 +29,7 @@ public class Message extends ParseObject {
     public void setUserName(String username) {
         put(USER_NAME_KEY, username);
     }
+
     public void setUserId(String userId) {
         put(USER_ID_KEY, userId);
     }

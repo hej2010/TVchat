@@ -1,9 +1,14 @@
 <resources>
-    <string name="app_name">TV chat</string>
-    <string name="channels_title">TV chat</string>
-    <string name="channels_message">Chatta med andra och kommentera det som visas på TV!</string>
+    <string name="app_name">TV-babbel</string>
+    <string name="channels_title">TV-babbel</string>
+    <string name="channels_message">Chatta med andra och kommentera det som visas på TV!\nFölj reglerna och var vänliga mot varandra och det som visas på TV.</string>
 
     <string name="message_hint">Skriv något</string>
+    <string name="message_menu_copy">Kopiera</string>
+    <string name="message_menu_report">Anmäl</string>
+    <string name="message_menu_delete">Radera</string>
+    <string name="message_reported">Tack för din anmälan!</string>
+    <string name="message_deleted">Raderad!</string>
     <string name="send">Skicka</string>
     <string name="profile_me">Min profilbild</string>
     <string name="profile_other">Annan persons profilbild</string>

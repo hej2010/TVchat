@@ -1,18 +1,29 @@
 package se.arctosoft.tvchat.adapters;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.parse.DeleteCallback;
+import com.parse.ParseACL;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -28,14 +39,16 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
     private static final int MESSAGE_OUTGOING = 123;
     private static final int MESSAGE_INCOMING = 321;
     private final List<Message> mMessages;
-    private final AppCompatActivity mContext;
+    private final AppCompatActivity mActivity;
     private final String mUserId;
     private static final Map<String, String> iconMap = new HashMap<>();
+    private final float[] lastTouchDownXY;
 
-    public ChatAdapter(AppCompatActivity context, String mUserId, List<Message> messages) {
+    public ChatAdapter(AppCompatActivity context, String mUserId, List<Message> messages, float[] lastTouchDownXY) {
         mMessages = messages;
         this.mUserId = mUserId;
-        mContext = context;
+        mActivity = context;
+        this.lastTouchDownXY = lastTouchDownXY;
     }
 
     @Override
@@ -78,6 +91,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
     @Override
     public void onBindViewHolder(MessageViewHolder holder, int position) {
         Message message = mMessages.get(position);
+        boolean isOwnMessage = message.getUserId().equals(ParseUser.getCurrentUser().getObjectId());
 
         Glide.with(holder.body.getContext())
                 .load(getProfileUrl(message.getUserId()))
@@ -85,14 +99,86 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
                 .into(holder.icon);
         holder.body.setText(message.getBody());
         holder.name.setText(message.getUserName()); // in addition to message show user ID
+        holder.root.setOnClickListener(v -> {
+            Log.e(TAG, "onBindViewHolder: pos " + position);
+            float x = lastTouchDownXY[0];
+            float y = lastTouchDownXY[1];
+
+            showPopup(holder, message, x, y, isOwnMessage);
+        });
+    }
+
+    private void showPopup(MessageViewHolder holder, Message message, float x, float y, boolean isOwnMessage) {
+        final ViewGroup root = (ViewGroup) mActivity.getWindow().getDecorView().findViewById(android.R.id.content);
+
+        final View view = new View(mActivity);
+        view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        view.setBackgroundColor(Color.TRANSPARENT);
+
+        root.addView(view);
+
+        view.setX(x);
+        view.setY(y);
+
+        PopupMenu popupMenu = new PopupMenu(mActivity, view, Gravity.TOP);
+
+        popupMenu.getMenuInflater().inflate(isOwnMessage ? R.menu.menu_message_outgoing : R.menu.menu_message_incoming, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.copy) {
+                ClipboardManager clipboard = mActivity.getSystemService(ClipboardManager.class);
+                clipboard.setPrimaryClip(ClipData.newPlainText("message", holder.body.getText().toString()));
+            } else if (id == R.id.report) {
+                Log.e(TAG, "showPopup: report at " + holder.getBindingAdapterPosition());
+                ParseObject report = new ParseObject("Report");
+                ParseACL acl = new ParseACL();
+                acl.setPublicReadAccess(true);
+                acl.setPublicWriteAccess(false);
+                report.setACL(acl);
+                report.put("u", ParseUser.getCurrentUser());
+                report.put("m", message);
+                Toast.makeText(mActivity, mActivity.getString(R.string.message_reported), Toast.LENGTH_SHORT).show();
+                report.saveInBackground(e -> {
+                    int pos = holder.getBindingAdapterPosition();
+                    if (e != null) {
+                        e.printStackTrace();
+                    }
+                    removeMessageAt(pos);
+                });
+            } else if (id == R.id.delete) {
+                message.deleteInBackground(e -> {
+                    if (e != null) {
+                        e.printStackTrace();
+                        Toast.makeText(mActivity, "Failed to delete message", Toast.LENGTH_SHORT).show();
+                    } else {
+                        removeMessageAt(holder.getBindingAdapterPosition());
+                        Toast.makeText(mActivity, mActivity.getString(R.string.message_deleted), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            return false;
+        });
+
+        popupMenu.setOnDismissListener(menu -> root.removeView(view));
+        popupMenu.show();
+    }
+
+    private void removeMessageAt(int pos) {
+        if (pos < 0 || mMessages.size() <= pos) {
+            return;
+        }
+        mMessages.remove(pos);
+        notifyItemRemoved(pos);
     }
 
     static class MessageViewHolder extends RecyclerView.ViewHolder {
         private final ImageView icon;
         private final TextView body, name;
+        private final View root;
 
         private MessageViewHolder(View itemView) {
             super(itemView);
+            root = itemView;
             icon = itemView.findViewById(R.id.ivIcon);
             body = itemView.findViewById(R.id.tvBody);
             name = itemView.findViewById(R.id.tvName);
