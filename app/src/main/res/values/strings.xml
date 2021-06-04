@@ -31,7 +31,7 @@
     <string name="send">Skicka</string>
     <string name="profile_me">Min profilbild</string>
     <string name="profile_other">Annan persons profilbild</string>
-    <string name="channel_text">Visas nu: %1$s</string>
+    <string name="channel_text">Meddelanden idag: %1$d</string>
     <string name="channel_menu_help">Hjälp</string>
     <string name="yes">Ja</string>
     <string name="no">Nej</string>

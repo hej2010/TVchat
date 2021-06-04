@@ -54,18 +54,19 @@ public class ChannelAdapter extends RecyclerView.Adapter<ChannelAdapter.MessageV
             mContext.startActivity(new Intent(mContext, ChatActivity.class)
                     .putExtra(ChatActivity.EXTRA_CHANNEL, channel));
         });
+        holder.txtBody.setText(mContext.getString(R.string.channel_text, channel.getNrOfMessages()));
     }
 
     public static class MessageViewHolder extends RecyclerView.ViewHolder {
         View clickable;
         ImageView ivChannelIcon;
-        TextView txtShowing, txtName;
+        TextView txtBody, txtName;
 
         public MessageViewHolder(View itemView) {
             super(itemView);
             clickable = itemView.findViewById(R.id.rLContent);
             ivChannelIcon = itemView.findViewById(R.id.ivChannelIcon);
-            txtShowing = itemView.findViewById(R.id.tvBody);
+            txtBody = itemView.findViewById(R.id.tvBody);
             txtName = itemView.findViewById(R.id.tvName);
         }
     }

@@ -49,8 +49,7 @@
             android:layout_alignStart="@+id/tvName"
             android:layout_toStartOf="@id/ivArrow"
             android:text="@string/channel_text"
-            android:textSize="15sp"
-            android:visibility="invisible" />
+            android:textSize="15sp" />
 
         <ImageView
             android:id="@+id/ivArrow"
