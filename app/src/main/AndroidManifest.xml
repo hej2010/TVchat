@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TVchat">
-        <activity android:name=".TermsActivity"></activity>
+        <activity android:name=".ReportsActivity"></activity>
+        <activity android:name=".TermsActivity" />
         <activity android:name=".LauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

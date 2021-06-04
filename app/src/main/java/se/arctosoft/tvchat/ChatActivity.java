@@ -1,5 +1,6 @@
 package se.arctosoft.tvchat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -33,6 +34,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import se.arctosoft.tvchat.adapters.ChatAdapter;
 import se.arctosoft.tvchat.data.Channel;
 import se.arctosoft.tvchat.data.Message;
+import se.arctosoft.tvchat.utils.Settings;
 import se.arctosoft.tvchat.utils.Toaster;
 
 public class ChatActivity extends AppCompatActivity {
@@ -51,6 +53,7 @@ public class ChatActivity extends AppCompatActivity {
     private Channel channel;
     private final float[] lastTouchDownXY = new float[2];
     private final AtomicBoolean isCreating = new AtomicBoolean(false);
+    private Settings settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +78,8 @@ public class ChatActivity extends AppCompatActivity {
             return;
         }
 
+        settings = new Settings(this);
+
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
 
@@ -83,6 +88,7 @@ public class ChatActivity extends AppCompatActivity {
             aB.setDisplayHomeAsUpEnabled(true);
             aB.setTitle(channel.getName());
         }
+
 
         if (ParseUser.getCurrentUser() != null) { // start with existing user
             setupMessagePosting();
@@ -93,9 +99,14 @@ public class ChatActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
             this.finish();
             return true;
+        } else if (id == R.id.reports) {
+            startActivity(new Intent(this, ReportsActivity.class));
+        } else if (id == R.id.help) {
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -104,7 +115,7 @@ public class ChatActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.clear();
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_chat, menu);
+        inflater.inflate(settings.isAdmin() ? R.menu.menu_chat_admin : R.menu.menu_chat, menu);
 
         return true;
     }
