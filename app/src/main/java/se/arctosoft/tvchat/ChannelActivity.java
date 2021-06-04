@@ -121,7 +121,9 @@ public class ChannelActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        loadChannels();
+        if (ParseUser.getCurrentUser() != null) {
+            loadChannels();
+        }
         super.onResume();
     }
 

@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.Map;
 
 import se.arctosoft.tvchat.R;
-import se.arctosoft.tvchat.Settings;
+import se.arctosoft.tvchat.utils.Settings;
 import se.arctosoft.tvchat.data.Message;
 import se.arctosoft.tvchat.utils.Dialogs;
 import se.arctosoft.tvchat.utils.Toaster;

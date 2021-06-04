@@ -1,24 +1,25 @@
 package se.arctosoft.tvchat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.parse.FunctionCallback;
 import com.parse.ParseCloud;
-import com.parse.ParseException;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import se.arctosoft.tvchat.utils.Dialogs;
+import se.arctosoft.tvchat.utils.Settings;
 import se.arctosoft.tvchat.utils.Toaster;
 
 public class AboutActivity extends AppCompatActivity {
@@ -75,6 +76,13 @@ public class AboutActivity extends AppCompatActivity {
                 }
             }
         });
+
+        Button btnShowPrivacyPolicy = findViewById(R.id.btnShowPrivacyPolicy);
+        Button btnShowTerms = findViewById(R.id.btnShowTerms);
+
+        btnShowPrivacyPolicy.setOnClickListener(v -> startActivity(new Intent(AboutActivity.this, TermsActivity.class).putExtra(TermsActivity.EXTRA_RESOURCE_ID, R.string.privacy_policy)));
+        btnShowTerms.setOnClickListener(v -> startActivity(new Intent(AboutActivity.this, TermsActivity.class).putExtra(TermsActivity.EXTRA_RESOURCE_ID, R.string.terms_content)));
+
     }
 
     @Override

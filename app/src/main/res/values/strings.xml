@@ -3,6 +3,12 @@
     <string name="channels_title">TV-babbel</string>
     <string name="channels_message">Chatta med andra och kommentera det som visas på TV!\nFölj reglerna och var vänliga mot varandra och det som visas på TV.</string>
 
+    <string name="launcher_title">Välkommen till TV-babbel!</string>
+    <string name="launcher_subtitle">Innan du börjar använda appen, läs och acceptera integritetspolicyn och villkoren.</string>
+    <string name="launcher_button_text">Jag har läst och godkänner</string>
+    <string name="launcher_button_pp">Integritetspolicy</string>
+    <string name="terms">Villkor</string>
+
     <string name="message_hint">Skriv något</string>
     <string name="message_menu_copy">Kopiera</string>
     <string name="message_menu_report">Anmäl</string>
@@ -51,11 +57,119 @@
     <string name="profile_save_already_taken">Fel: det namnet är upptaget!</string>
     <string name="fel">Fel: %1$s</string>
 
-    <string name="about_text">TV-babbel är ..</string>
+    <string name="about_text">TV-babbel är en app där du kan kommentera och diskutera med andra användera det som visas på TV.\n\nVälj en kanal och diskutera det som visas där!</string>
     <string name="about_rules">Chatt-regler</string>
     <string name="about_rules_content">
-        1. \n
-        2. \n
-        3.
+        1. Appen är till för att diskutera och kommentera det som visas på TV.\n\n
+        2. Använd rätt kanal och håll dig till ämnet.\n\n
+        3. Var vänlig mot andra användare och personer eller grupper som diskuteras och visas på TV.\n\n
+        4. Skicka inga hot, trakasserier eller andra slags olämpliga meddelanden.\n\n
+        5. Skicka inga länkar eller överdrivet många emojis.\n\n
+        6. Spamma inte.\n\n
+    </string>
+
+    <string name="privacy_policy">Integritetspolicy\n\n
+        Vilken information samlar vi in?\n
+        - Grundläggande kontoinformation: Det visningsnamn du väljer kommer alltid vara tillgängligt för alla som använder appen.\n
+        - Inlägg och annan tillgänglig information: Allt du skriver i appen är publikt. När du skapar ett nytt inlägg sparas datum och tid för meddelandet.\n
+        - Kakor och annonserings-ID: När du använder appen visas annonser. Dessa använder kakor och ditt annonserings-ID för att visa dig relevanta annonser.\n
+        - IP-adresser och annan metadata: När du använder appen sparar vi din IP-adress. Din senaste IP-adress kan lagras i upp till 12 månader. Vi kan även spara serverloggar som kan inkludera din IP-adress lika länge.\n\n
+
+        Vad använder vi din information till?\n
+        Din information kan användas till följande saker:\n
+        - Din information används endast för att kunna erbjuda dig de grundläggande funktionerna i tjänsten och för att förhindra missbrukande av tjänsten och våra servrar.\n
+        - För att visa dig relevanta annonser.\n
+        - För moderering av tjänsten. Vi kan använda din information, och jämföra t.ex. IP-adresser för att förhindra omkringående av bannade konton eller liknande.\n\n
+
+        Hur skyddar vi din information?\n
+        - Vi tillämpar ett flertal säkerhetsåtgärder för att bibehålla säkerheten av din information. All trafik är krypterad med SSL/TLS.\n\n
+
+        Hur länge sparar vi data?\n
+        - Vi kommer att försöka så långt som möjligt:\n
+        — Spara serverloggar, inkluderat IP-adresser och alla förfrågningar till denna servern inte längre än 90 dagar efter gränsen för hur länge loggar sparas.\n
+        — Spara IP-adresser kortare än 12 månader.\n\n
+
+        Du kan efterfråga ett utdrag av din information, inkluderat din media, inlägg och personlig information.\n
+        Du kan när som helst radera ditt konto genom att kontakta oss. Uppge ditt visningsnamn.\n\n
+
+        Använder vi kakor?\n
+        - Ja, appen använder kakor. Kakor är små filer som innehåller information. Dessa kakor möjliggör appen och dess tjänster att komma ihåg din enhet och associera det med ditt registrerade konto.
+        Vi använder kakor för att förstå och spara dina preferenser för framtida besök och för att visa annonser.\n\n
+
+        Delar vi information med tredjepart?\n
+        - Data som överförs till tredje-part är kakor och annonserings-ID:t. Vi säljer, delar eller på annat sätt överför inte din övriga personliga information till tredjepart.
+        Din data lagras på servrar i Sverige, men kan komma att delas med externa servrar och användare som befinner sig både i Sverige och i andra länder.
+        Din data kan kommas att delas med (lokala) myndigheter, polisväsenden och andra aktörer i händelse av misstanke om brott och för att följa de lagar och regler som gäller.
+\n\n
+        Barns användande av tjänsten\n
+        - Våra tjänster är tillgängliga för alla svenska invånare som är över 13 år gamla. Om du är under 13 år gammal ska du fått godkännande av en vårdnadshavare/förälder innan du får använda tjänsten. Bor du i ett annat land än Sverige, men inom EU/EEA, behöver du godkännande från en vårdnadshavare om du är yngre än 14.
+\n\n
+        Ändringar till vår integritetspolicy samt Användarvillkor\n
+        - Om vi ändrar våra villkor eller policys kommer vi att visa dessa ändringar här.\n\n
+    </string>
+    <string name="terms_content">Villkor\n\n
+        1. Generella Villkor\n
+        Appen och dess servrar drivs av Arctosoft AB ("vi", "vår", "oss").\n
+        Genom att använda ett gästkonto så godkänner du och är bunden till villkoren i detta dokument, inkluderat integritetspolicyn och reglerna. Går du inte med på ett eller flera av villkoren i detta avtal ska och får du inte använda tjänsten.\n
+        Vi reserverar oss rätten att radera och redigera data som tillhör dig, samt att banna, tidsblockera eller stänga konton som bryter mot våra regler och villkor.
+        Vi är inte ansvariga för förlorad data, information, pengar, meddelanden eller liknande som en följd av godkännandet av dessa villkor. Du som användare ska själv spara och säkerhetskopiera din viktiga data.\n
+        För att följa lokala regler och polisärenden reserverar vi oss rätten att övervaka all kommunikation och information som når våra servrar.\n
+        Om ditt konto är bannat, blockerat eller avstängt får du inte skapa ett nytt för att kringgå dessa begränsningar. Försök att kringgå detta kan medföra avstängning av alla gamla samt nya konton.\n
+        Du godkänner att lyda alla förfrågningar från administratörer.\n
+        Du kan överklaga en dom eller begränsning på ditt konto genom mail.\n\n
+
+        2. Ändringar i detta avtal\n
+        Vi reserverar oss rätten att ändra dessa villkor när du uppdaterar appen. Det är din skyldighet att regelbundet läsa informationen som publiceras. Genom att fortsätta använda tjänsten efter att en ändring i dessa villkor har skett så godkänner du även de nya villkoren. Nya ändringar kommer att visas här.
+
+        3. Kontoanvändning\n
+        Våra tjänster är tillgängliga för alla Nordiska invånare som är över 13 år gamla. Om du är under 13 år gammal ska du fått godkännande av en vårdnadshavare/förälder innan du får använda tjänsten. Bor du i ett annat land än Sverige, men inom EU/EEA, behöver du godkännande från en vårdnadshavare om du är yngre än 14.
+        Du godkänner att inte skapa ett konto som strider mot våra villkor eller uppförandekoder.
+        Du godkänner att inte skapa fler konton än ett, samt att inte imitera andra användare, riktiga personer eller företag.
+        Du godkänner att inte dela eller ge ditt konto till andra personer.
+        Du godkänner att vi kan redigera och radera din kontoinformation, samt att vi kan stänga av, banna eller radera ditt konto utan förvarning, för vilka anledningar som helst.
+        Du godkänner att du själv är ansvarig för allt som händer med ditt konto.
+        Du godkänner att INTE använda ditt konto, dina konton, eller andras konton till att:\n
+            - Försöka få eller ha obehörig åtkomst till, eller använda andra användares konton eller data så som lösenord, användarnamn, data eller system anslutna till denna tjänst.\n
+            - Försöka få eller ha obehörig åtkomst till våra tjänster och servrar.\n
+            - Skanna, testa eller proba våra system eller tjänster.\n
+            - Få åtkomst till material du ej har rätt att ha tillgång till.\n
+            - Kringgå, vare sig i försök eller faktiskt göra det, våra säkerhets- eller verifieringsåtgärder.\n
+            - Använda våra system och tjänster så att det negativt påverkar serverprestandan.\n
+            - Hindra andra från att få åtkomst till samt använda tjänsten.\n
+            - Använda bottar eller andra verktyg för att kopiera data från våra tjänster eller hemsidor så att det negativt påverkar serverprestandan.\n
+            - Använda våra tjänster för att bedriva bedrägerier eller utförande andra olagliga aktiviteter.\n
+            - Försöka, eller att faktiskt störa eller hindra våra tjänster, servrar, nätverk eller användare.\n
+            - Använda tjänsten till att skicka oönskade massmeddelanden, data eller liknande.\n
+            - Skicka eller publicera data, foton eller filer som innehåller skadlig kod, så som virus, trojaner eller liknande, som är skapade för att göra skada på andra enheter, tjänster eller liknande.\n
+            - Skicka eller publicera data som är emot svensk eller internationell lag.\n\n
+
+        4. Uppförande\n
+        Du går med på ATT:\n
+            - Inte delta i eller uppmuntra illegala aktiviteter.\n
+            - Behandla andra användare och moderatorer med respekt.\n
+            - Inte hota andra användare.\n
+            - Inte förfölja andra användare.\n
+            - Inte skicka stötande meddelanden eller media, inkluderat rasism, trakasserier, överdrivet ovårdat språk och sexuellt innehåll.\n
+            - Inte identifiera dig med eller stödja hat, terrororganisationer, massmördare, deras ideologier eller liknande.\n
+            - Inte dela länkar eller liknande till sidor med illegalt eller annat innehåll som bryter mot våra villkor och regler.\n\n
+
+        5. Uppladdad Data\n
+        Genom att ladda upp meddelanden eller övrig data genom våran tjänst, ger du oss en icke-exklusiv, global, royaltyfri, överförbar rätt och licens att använda, ändra, modifiera,
+        lagra, dela, visa samt distribuera sagd data. Dessa tillstånd används endast för att bedriva och göra reklam för tjänsten, och ger oss inte någon rätt att använda tillståndet och dess tillhörande data utanför tjänstens omfång.\n\n
+
+        6. Service och Tillgänglighet\n
+        Våra tjänster, system och hemsidor kan komma att ändras när som helst utan förvarning. Vi behåller rätten att när som helst begränsa, hindra, stänga av eller modifiera tjänsten, vilket kan hindra din åtkomst till den.\n
+        Våra tjänster erbjuds som dom är, och vi håller inget ansvar för:\n
+            - Att tjänsten fungerar.\n
+            - Att tjänsten uppfyller dina krav på tjänsten.\n
+            - Att tjänsten är felfri och inte innehåller några buggar.\n
+            - Att data kan komma att förloras, raderas eller modifieras.\n
+            - Att du kan komma i bråk med andra användare.\n
+            - Agerande från externa aktörer.\n
+            - Otillåten åtkomst till din data eller ditt konto.\n
+            - Länkar, bilder, texter eller annat material uppladdat av användare.\n\n
+
+        7. Support\n
+        Har du frågor, vänligen kontakta support-teamet.
     </string>
 </resources>

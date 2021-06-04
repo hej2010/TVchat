@@ -4,26 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AboutActivity">
-
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/white"
-        android:elevation="10dp"
-        android:fitsSystemWindows="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context=".LauncherActivity">
 
     <ScrollView
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/lLBottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,79 +46,31 @@
                     <TextView
                         android:layout_width="270dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/about"
+                        android:text="@string/launcher_title"
                         android:textAlignment="center"
                         android:textSize="26sp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="240dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/about_text"
+                        android:layout_marginTop="30dp"
+                        android:text="@string/launcher_subtitle"
                         android:textAlignment="center" />
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="340dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="3dp"
-                app:contentPadding="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="270dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/about_rules"
-                        android:textAlignment="center"
-                        android:textSize="26sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/about_rules_content"
-                        android:textAlignment="center" />
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="340dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="3dp"
-                app:contentPadding="20dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical"
-                    android:paddingBottom="20dp">
-
-                    <TextView
-                        android:layout_width="270dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/terms"
-                        android:textAlignment="center"
-                        android:textSize="26sp"
-                        android:textStyle="bold" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnShowTerms"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/terms"
+                        app:cornerRadius="12dp"
+                        app:icon="@drawable/ic_outline_book_24" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnShowRules"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/about_rules"
                         app:cornerRadius="12dp"
                         app:icon="@drawable/ic_outline_book_24" />
 
@@ -152,5 +93,27 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/lLBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="12dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSave"
+            style="?android:buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/launcher_button_text"
+            app:cornerRadius="12dp"
+            app:icon="@drawable/ic_baseline_done_24"
+            app:iconGravity="textTop"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
