@@ -10,6 +10,10 @@
         android:title="@string/message_menu_delete" />
 
     <item
+        android:id="@+id/purge"
+        android:title="@string/message_menu_purge" />
+
+    <item
         android:id="@+id/block"
         android:title="@string/message_menu_block" />
 

@@ -69,9 +69,16 @@ public class Dialogs {
         new MaterialAlertDialogBuilder(activity)
                 .setTitle(activity.getString(R.string.message_menu_unblock))
                 .setMessage(activity.getString(R.string.message_menu_unblock_confirm))
-                .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
-                    listener.onPositive();
-                })
+                .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> listener.onPositive())
+                .setNegativeButton(android.R.string.cancel, null)
+                .show();
+    }
+
+    public static void showPurgeConfirm(@NonNull Activity activity, @NonNull IOnPositiveListener listener) {
+        new MaterialAlertDialogBuilder(activity)
+                .setTitle(activity.getString(R.string.message_menu_purge))
+                .setMessage(activity.getString(R.string.message_menu_purge_confirm))
+                .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> listener.onPositive())
                 .setNegativeButton(android.R.string.cancel, null)
                 .show();
     }

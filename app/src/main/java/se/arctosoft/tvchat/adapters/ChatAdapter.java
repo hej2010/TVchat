@@ -159,6 +159,19 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
                         Toaster.getInstance(mActivity).showShort(mActivity.getString(R.string.message_deleted));
                     }
                 });
+            } else if (id == R.id.purge) {
+                Dialogs.showPurgeConfirm(mActivity, () -> {
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("u", message.getUserId());
+                    ParseCloud.callFunctionInBackground("purge", map, (object, e) -> {
+                        if (e != null) {
+                            e.printStackTrace();
+                            Toaster.getInstance(mActivity).showShort("Failed to purge for user: " + e.getMessage());
+                        } else {
+                            Toaster.getInstance(mActivity).showShort("Purged");
+                        }
+                    });
+                });
             } else if (id == R.id.block) {
                 Dialogs.showBlockDialog(mActivity, time -> {
                     Map<String, Object> map = new HashMap<>();
