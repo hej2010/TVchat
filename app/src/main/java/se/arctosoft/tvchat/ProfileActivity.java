@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +29,7 @@ public class ProfileActivity extends AppCompatActivity {
     private LinearProgressIndicator progressBar;
     private Button btnSave;
     private EditText etUsername;
+    private TextView txtUserId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +58,10 @@ public class ProfileActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         btnSave = findViewById(R.id.btnSave);
         etUsername = findViewById(R.id.etUsername);
+        txtUserId = findViewById(R.id.txtUserId);
 
         etUsername.setText(user.getUsername());
+        txtUserId.setText(getString(R.string.profile_user_id, user.getObjectId()));
         updateUser(user);
     }
 
@@ -114,6 +117,7 @@ public class ProfileActivity extends AppCompatActivity {
                 });
                 setLoading(false);
                 etUsername.setText(((ParseUser) object).getUsername());
+                txtUserId.setText(getString(R.string.profile_user_id, object.getObjectId()));
             }
         });
     }

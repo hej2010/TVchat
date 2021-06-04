@@ -73,11 +73,19 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
-                android:layout_width="240dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/profile_username_text"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/txtUserId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/profile_user_id"
                 android:textAlignment="center"
-                android:textSize="11sp" />
+                android:textIsSelectable="true" />
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>

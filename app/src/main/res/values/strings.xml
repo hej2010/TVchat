@@ -52,6 +52,7 @@
     <string name="profile_allowed_digits">abcdefghijklmnopqrstuvwxyzåäöABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ0123456789-_</string>
     <string name="profile_username_hint">Visningsnamn</string>
     <string name="profile_username_text">Ditt visningsnamn kan vara 3 till 25 tecken långt och innehålla bokstäver, siffor, - och _</string>
+    <string name="profile_user_id">Ditt användar-ID: %1$s</string>
     <string name="profile_save">Uppdatera profil</string>
     <string name="profile_saved">Profil uppdaterad!</string>
     <string name="profile_save_already_taken">Fel: det namnet är upptaget!</string>
@@ -90,7 +91,7 @@
         — Spara IP-adresser kortare än 12 månader.\n\n
 
         Du kan efterfråga ett utdrag av din information, inkluderat din media, inlägg och personlig information.\n
-        Du kan när som helst radera ditt konto genom att kontakta oss. Uppge ditt visningsnamn.\n\n
+        Du kan när som helst radera ditt konto genom att kontakta oss. Uppge ditt visningsnamn eller användar-ID.\n\n
 
         Använder vi kakor?\n
         - Ja, appen använder kakor. Kakor är små filer som innehåller information. Dessa kakor möjliggör appen och dess tjänster att komma ihåg din enhet och associera det med ditt registrerade konto.
