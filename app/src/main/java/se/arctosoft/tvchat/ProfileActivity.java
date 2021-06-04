@@ -21,6 +21,8 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.parse.ParseUser;
 
+import se.arctosoft.tvchat.utils.Toaster;
+
 public class ProfileActivity extends AppCompatActivity {
     private static final String TAG = "ProfileActivity";
 
@@ -87,14 +89,14 @@ public class ProfileActivity extends AppCompatActivity {
                 setLoading(false);
                 String message = e.getMessage();
                 if (message != null && message.startsWith("Account already exists")) {
-                    Toast.makeText(ProfileActivity.this, getString(R.string.profile_save_already_taken), Toast.LENGTH_SHORT).show();
+                    Toaster.getInstance(this).showShort(getString(R.string.profile_save_already_taken));
                 } else {
-                    Toast.makeText(ProfileActivity.this, getString(R.string.fel, message), Toast.LENGTH_SHORT).show();
+                    Toaster.getInstance(this).showShort(getString(R.string.fel, message));
                 }
             } else {
                 btnSave.setEnabled(true);
                 setLoading(false);
-                Toast.makeText(ProfileActivity.this, getString(R.string.profile_saved), Toast.LENGTH_SHORT).show();
+                Toaster.getInstance(this).showShort(getString(R.string.profile_saved));
                 finish();
             }
         });

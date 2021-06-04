@@ -33,6 +33,7 @@ import java.util.List;
 import se.arctosoft.tvchat.adapters.ChatAdapter;
 import se.arctosoft.tvchat.data.Channel;
 import se.arctosoft.tvchat.data.Message;
+import se.arctosoft.tvchat.utils.Toaster;
 
 public class ChatActivity extends AppCompatActivity {
     private static final String TAG = "ChatActivity";
@@ -56,7 +57,7 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
 
         if (savedInstanceState != null) {
-            channel = (Channel) savedInstanceState.getParcelable(EXTRA_CHANNEL);
+            channel = savedInstanceState.getParcelable(EXTRA_CHANNEL);
         } else {
             Bundle extras = getIntent().getExtras();
             if (extras != null) {
@@ -157,7 +158,7 @@ public class ChatActivity extends AppCompatActivity {
                 //Toast.makeText(ChatActivity.this, "Successfully created message on Parse", Toast.LENGTH_SHORT).show();
             } else {
                 Log.e(TAG, "Failed to save message", e);
-                Toast.makeText(ChatActivity.this, "Failed to send message", Toast.LENGTH_SHORT).show();
+                Toaster.getInstance(this).showShort(e.getMessage() != null ? e.getMessage() : "Failed to send message");
             }
         });
     }
