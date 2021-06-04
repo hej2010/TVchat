@@ -36,6 +36,7 @@ public class ChannelActivity extends AppCompatActivity {
     private ChannelAdapter mAdapter;
     private LinearProgressIndicator progressBar;
     private Button btnProfile, btnAbout;
+    private long lastLoadChannels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,8 +87,11 @@ public class ChannelActivity extends AppCompatActivity {
     }
 
     private void loadChannels() {
+        if ((System.currentTimeMillis() - lastLoadChannels) / 1000 < 5) {
+            return;
+        }
+        lastLoadChannels = System.currentTimeMillis();
         ParseQuery<Channel> query = ParseQuery.getQuery(Channel.class);
-        // get the latest 50 messages, order will show up newest to oldest of this group
         query.orderByAscending("o");
         // Execute query to fetch all messages from Parse asynchronously
         // This is equivalent to a SELECT query with SQL
@@ -113,6 +117,12 @@ public class ChannelActivity extends AppCompatActivity {
             }
         });
         //getChannelSchedule();
+    }
+
+    @Override
+    protected void onResume() {
+        loadChannels();
+        super.onResume();
     }
 
     private void getChannelSchedule() {

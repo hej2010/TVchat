@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -137,6 +136,7 @@ public class ChatActivity extends AppCompatActivity {
             }
             final String data = etMessage.getText().toString();
             if (data.trim().isEmpty()) {
+                isCreating.set(false);
                 return;
             }
             ParseACL acl = new ParseACL();
