@@ -74,7 +74,7 @@
         - Grundläggande kontoinformation: Det visningsnamn du väljer kommer alltid vara tillgängligt för alla som använder appen.\n
         - Inlägg och annan tillgänglig information: Allt du skriver i appen är publikt. När du skapar ett nytt inlägg sparas datum och tid för meddelandet.\n
         - Kakor och annonserings-ID: När du använder appen visas annonser. Dessa använder kakor och ditt annonserings-ID för att visa dig relevanta annonser.\n
-        - IP-adresser och annan metadata: När du använder appen sparar vi din IP-adress. Din senaste IP-adress kan lagras i upp till 12 månader. Vi kan även spara serverloggar som kan inkludera din IP-adress lika länge.\n\n
+        - IP-adresser och annan metadata: När du använder appen sparar vi din IP-adress. Vi kan även spara serverloggar som kan inkludera din IP-adress.\n\n
 
         Vad använder vi din information till?\n
         Din information kan användas till följande saker:\n
@@ -87,7 +87,7 @@
 
         Hur länge sparar vi data?\n
         - Vi kommer att försöka så långt som möjligt:\n
-        — Spara serverloggar, inkluderat IP-adresser och alla förfrågningar till denna servern inte längre än 90 dagar efter gränsen för hur länge loggar sparas.\n
+        — Spara serverloggar, inkluderat IP-adresser och alla förfrågningar till denna servern inte längre än 6 månader efter gränsen för hur länge loggar sparas.\n
         — Spara IP-adresser kortare än 12 månader.\n\n
 
         Du kan efterfråga ett utdrag av din information, inkluderat din media, inlägg och personlig information.\n
