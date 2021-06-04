@@ -29,6 +29,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import se.arctosoft.tvchat.adapters.ChatAdapter;
 import se.arctosoft.tvchat.data.Channel;
@@ -50,6 +51,7 @@ public class ChatActivity extends AppCompatActivity {
     private final ParseQuery<Message> parseQuery = ParseQuery.getQuery(Message.class);
     private Channel channel;
     private final float[] lastTouchDownXY = new float[2];
+    private final AtomicBoolean isCreating = new AtomicBoolean(false);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,42 +127,45 @@ public class ChatActivity extends AppCompatActivity {
         // When send button is clicked, create message object on Parse
         btSend.setOnClickListener(v -> {
             createMessage();
-            etMessage.setText(null);
         });
     }
 
     private void createMessage() {
-        if (parseLiveQueryClient == null) {
-            setupLiveQueries();
-        }
-        final String data = etMessage.getText().toString();
-        if (data.trim().isEmpty()) {
-            return;
-        }
-        ParseACL acl = new ParseACL();
-        acl.setPublicReadAccess(true);
-        acl.setPublicWriteAccess(false);
-        Message message = new Message();
-        message.setACL(acl);
-        message.setBody(data);
-        ParseUser user = ParseUser.getCurrentUser();
-        message.setUserName(user.getUsername());
-        message.setUserId(user.getObjectId());
-        message.setChannel(channel);
-        message.saveInBackground(e -> {
-            if (isFinishing() || isDestroyed()) {
+        if (isCreating.compareAndSet(false, true)) {
+            if (parseLiveQueryClient == null) {
+                setupLiveQueries();
+            }
+            final String data = etMessage.getText().toString();
+            if (data.trim().isEmpty()) {
                 return;
             }
-            if (e == null) {
-                mMessages.add(0, message);
-                mAdapter.notifyItemInserted(0);
-                rvChat.scrollToPosition(0);
-                //Toast.makeText(ChatActivity.this, "Successfully created message on Parse", Toast.LENGTH_SHORT).show();
-            } else {
-                Log.e(TAG, "Failed to save message", e);
-                Toaster.getInstance(this).showShort(e.getMessage() != null ? e.getMessage() : "Failed to send message");
-            }
-        });
+            ParseACL acl = new ParseACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(false);
+            Message message = new Message();
+            message.setACL(acl);
+            message.setBody(data);
+            ParseUser user = ParseUser.getCurrentUser();
+            message.setUserName(user.getUsername());
+            message.setUserId(user.getObjectId());
+            message.setChannel(channel);
+            message.saveInBackground(e -> {
+                if (isFinishing() || isDestroyed()) {
+                    return;
+                }
+                isCreating.set(false);
+                if (e == null) {
+                    etMessage.setText(null);
+                    mMessages.add(0, message);
+                    mAdapter.notifyItemInserted(0);
+                    rvChat.scrollToPosition(0);
+                    //Toast.makeText(ChatActivity.this, "Successfully created message on Parse", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.e(TAG, "Failed to save message", e);
+                    Toaster.getInstance(this).showShort(e.getMessage() != null ? e.getMessage() : "Failed to send message");
+                }
+            });
+        }
     }
 
     @Override

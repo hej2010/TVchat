@@ -7,6 +7,21 @@
     <string name="message_menu_copy">Kopiera</string>
     <string name="message_menu_report">Anmäl</string>
     <string name="message_menu_delete">Radera</string>
+    <string name="message_menu_block">Blockera</string>
+    <string name="block_for_2min">Blockera i 2 minuter</string>
+    <string name="block_for_5min">Blockera i 5 minuter</string>
+    <string name="block_for_15min">Blockera i 15 minuter</string>
+    <string name="block_for_30min">Blockera i 30 minuter</string>
+    <string name="block_for_60min">Blockera i 60 minuter</string>
+    <string name="block_for_3h">Blockera i 3 timmar</string>
+    <string name="block_for_6h">Blockera i 6 timmar</string>
+    <string name="block_for_12h">Blockera i 12 timmar</string>
+    <string name="block_for_24h">Blockera i 24 timmar</string>
+    <string name="block_for_3d">Blockera i 3 dagar</string>
+    <string name="block_for_7d">Blockera i 7 dagar</string>
+    <string name="block_for_14d">Blockera i 14 dagar</string>
+    <string name="block_for_30d">Blockera i 30 dagar</string>
+    <string name="block_for_3mon">Blockera i 3 månader</string>
     <string name="message_reported">Tack för din anmälan!</string>
     <string name="message_deleted">Raderad!</string>
     <string name="message_deleted_error">Fel: det gick inte att radera!</string>
@@ -18,6 +33,7 @@
 
     <string name="my_profile">Min profil</string>
     <string name="about">Om</string>
+    <string name="about_login">Test</string>
 
     <string name="profile_allowed_digits">abcdefghijklmnopqrstuvwxyzåäöABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ0123456789-_</string>
     <string name="profile_username_hint">Visningsnamn</string>
@@ -26,4 +42,12 @@
     <string name="profile_saved">Profil uppdaterad!</string>
     <string name="profile_save_already_taken">Fel: det namnet är upptaget!</string>
     <string name="fel">Fel: %1$s</string>
+
+    <string name="about_text">TV-babbel är ..</string>
+    <string name="about_rules">Chat-regler</string>
+    <string name="about_rules_content">
+        1. \n
+        2. \n
+        3.
+    </string>
 </resources>

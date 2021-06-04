@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,9 +18,8 @@ import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.parse.DeleteCallback;
 import com.parse.ParseACL;
-import com.parse.ParseException;
+import com.parse.ParseCloud;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
@@ -32,7 +30,9 @@ import java.util.List;
 import java.util.Map;
 
 import se.arctosoft.tvchat.R;
+import se.arctosoft.tvchat.Settings;
 import se.arctosoft.tvchat.data.Message;
+import se.arctosoft.tvchat.utils.Dialogs;
 import se.arctosoft.tvchat.utils.Toaster;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHolder> {
@@ -44,12 +44,14 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
     private final String mUserId;
     private static final Map<String, String> iconMap = new HashMap<>();
     private final float[] lastTouchDownXY;
+    private final boolean isAdmin;
 
     public ChatAdapter(AppCompatActivity context, String mUserId, List<Message> messages, float[] lastTouchDownXY) {
         mMessages = messages;
         this.mUserId = mUserId;
         mActivity = context;
         this.lastTouchDownXY = lastTouchDownXY;
+        this.isAdmin = new Settings(context).isAdmin();
     }
 
     @Override
@@ -110,7 +112,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
     }
 
     private void showPopup(MessageViewHolder holder, Message message, float x, float y, boolean isOwnMessage) {
-        final ViewGroup root = (ViewGroup) mActivity.getWindow().getDecorView().findViewById(android.R.id.content);
+        final ViewGroup root = mActivity.getWindow().getDecorView().findViewById(android.R.id.content);
 
         final View view = new View(mActivity);
         view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -123,7 +125,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
 
         PopupMenu popupMenu = new PopupMenu(mActivity, view, Gravity.TOP);
 
-        popupMenu.getMenuInflater().inflate(isOwnMessage ? R.menu.menu_message_outgoing : R.menu.menu_message_incoming, popupMenu.getMenu());
+        popupMenu.getMenuInflater().inflate(isOwnMessage ? R.menu.menu_message_outgoing :
+                (isAdmin ? R.menu.menu_message_incoming_admin : R.menu.menu_message_incoming), popupMenu.getMenu());
         popupMenu.setOnMenuItemClickListener(item -> {
             int id = item.getItemId();
             if (id == R.id.copy) {
@@ -155,6 +158,20 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
                         removeMessageAt(holder.getBindingAdapterPosition());
                         Toaster.getInstance(mActivity).showShort(mActivity.getString(R.string.message_deleted));
                     }
+                });
+            } else if (id == R.id.block) {
+                Dialogs.showBlockDialog(mActivity, time -> {
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("u", message.getUserId());
+                    map.put("t", time);
+                    ParseCloud.callFunctionInBackground("block", map, (object, e) -> {
+                        if (e != null) {
+                            e.printStackTrace();
+                            Toaster.getInstance(mActivity).showShort("Failed to block user: " + e.getMessage());
+                        } else {
+                            Toaster.getInstance(mActivity).showShort("Blocked user for " + ((int) (time / 60000)) + " minutes");
+                        }
+                    });
                 });
             }
             return false;

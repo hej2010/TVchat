@@ -59,6 +59,7 @@ public class ChannelActivity extends AppCompatActivity {
         rvChannels.setLayoutManager(linearLayoutManager);
 
         btnProfile.setOnClickListener(v -> startActivity(new Intent(ChannelActivity.this, ProfileActivity.class)));
+        btnAbout.setOnClickListener(v -> startActivity(new Intent(ChannelActivity.this, AboutActivity.class)));
 
         if (ParseUser.getCurrentUser() != null) { // start with existing user
             btnProfile.setEnabled(true);
