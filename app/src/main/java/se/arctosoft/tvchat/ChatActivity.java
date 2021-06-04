@@ -284,8 +284,7 @@ public class ChatActivity extends AppCompatActivity {
         super.onPause();
         Log.e(TAG, "onPause: " + parseLiveQueryClient);
         if (parseLiveQueryClient != null) {
-
-            parseLiveQueryClient.disconnect();
+            //parseLiveQueryClient.disconnect();
         }
     }
 
