@@ -15,9 +15,10 @@
     <string name="message_menu_delete">Radera</string>
     <string name="message_menu_purge">Radera allt från</string>
     <string name="message_menu_block">Blockera</string>
+    <string name="message_menu_unblock">Avblockera</string>
+    <string name="message_menu_report_confirm">Är du säker på att du vill rapportera det här meddelandet för granskning?</string>
     <string name="message_menu_block_confirm">Är du säker på att du vill blockera användaren?</string>
     <string name="message_menu_unblock_confirm">Är du säker på att du vill avblockera användaren?</string>
-    <string name="message_menu_unblock">Avblockera</string>
     <string name="message_menu_purge_confirm">Är du säker på att du vill radera alla meddelanden från denna användare?</string>
     <string name="block_for_2min">Blockera i 2 minuter</string>
     <string name="block_for_5min">Blockera i 5 minuter</string>

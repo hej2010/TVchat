@@ -133,21 +133,23 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
                 ClipboardManager clipboard = mActivity.getSystemService(ClipboardManager.class);
                 clipboard.setPrimaryClip(ClipData.newPlainText("message", holder.body.getText().toString()));
             } else if (id == R.id.report) {
-                Log.e(TAG, "showPopup: report at " + holder.getBindingAdapterPosition());
-                ParseObject report = new ParseObject("Report");
-                ParseACL acl = new ParseACL();
-                acl.setPublicReadAccess(true);
-                acl.setPublicWriteAccess(false);
-                report.setACL(acl);
-                report.put("u", ParseUser.getCurrentUser());
-                report.put("m", message);
-                Toaster.getInstance(mActivity).showShort(mActivity.getString(R.string.message_reported));
-                report.saveInBackground(e -> {
-                    int pos = holder.getBindingAdapterPosition();
-                    if (e != null) {
-                        e.printStackTrace();
-                    }
-                    removeMessageAt(pos);
+                Dialogs.showReportConfirm(mActivity, () -> {
+                    ParseObject report = new ParseObject("Report");
+                    ParseACL acl = new ParseACL();
+                    acl.setPublicReadAccess(true);
+                    acl.setPublicWriteAccess(false);
+                    report.setACL(acl);
+                    report.put("u", message.getUserId());
+                    report.put("m", message);
+                    report.put("b", message.getBody().trim());
+                    Toaster.getInstance(mActivity).showShort(mActivity.getString(R.string.message_reported));
+                    report.saveInBackground(e -> {
+                        int pos = holder.getBindingAdapterPosition();
+                        if (e != null) {
+                            e.printStackTrace();
+                        }
+                        removeMessageAt(pos);
+                    });
                 });
             } else if (id == R.id.delete) {
                 message.deleteInBackground(e -> {
