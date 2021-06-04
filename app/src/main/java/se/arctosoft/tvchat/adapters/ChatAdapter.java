@@ -173,6 +173,19 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
                         }
                     });
                 });
+            } else if (id == R.id.unblock) {
+                Dialogs.showUnblockConfirm(mActivity, () -> {
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("u", message.getUserId());
+                    ParseCloud.callFunctionInBackground("unblock", map, (object, e) -> {
+                        if (e != null) {
+                            e.printStackTrace();
+                            Toaster.getInstance(mActivity).showShort("Failed to unblock user: " + e.getMessage());
+                        } else {
+                            Toaster.getInstance(mActivity).showShort("Unblocked user");
+                        }
+                    });
+                });
             }
             return false;
         });

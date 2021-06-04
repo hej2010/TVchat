@@ -27,10 +27,6 @@ public class Dialogs {
                 .show();
     }
 
-    public interface IOnLoginListener {
-        void onPositive(String pwd);
-    }
-
     public static void showBlockDialog(@NonNull Activity activity, @NonNull IOnBlockListener listener) {
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(activity, android.R.layout.select_dialog_singlechoice);
         arrayAdapter.add(activity.getString(R.string.block_for_2min));
@@ -52,14 +48,44 @@ public class Dialogs {
                 .setTitle(activity.getString(R.string.about_login))
                 .setAdapter(arrayAdapter, (dialog, which) -> {
                     long[] time = new long[]{120000, 300000, 900000, 1800000, 3600000, 10800000, 21600000, 43200000, 86400000, 259200000, 604800000, 1209600000, 2592000000L, 7884000000L};
-                    listener.onBlock(time[which]);
+                    showBlockConfirm(activity, listener, time[which]);
                 })
                 .setNegativeButton(android.R.string.cancel, null)
                 .show();
     }
 
+    private static void showBlockConfirm(@NonNull Activity activity, @NonNull IOnBlockListener listener, long time) {
+        new MaterialAlertDialogBuilder(activity)
+                .setTitle(activity.getString(R.string.message_menu_block))
+                .setMessage(activity.getString(R.string.message_menu_block_confirm))
+                .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
+                    listener.onBlock(time);
+                })
+                .setNegativeButton(android.R.string.cancel, null)
+                .show();
+    }
+
+    public static void showUnblockConfirm(@NonNull Activity activity, @NonNull IOnPositiveListener listener) {
+        new MaterialAlertDialogBuilder(activity)
+                .setTitle(activity.getString(R.string.message_menu_unblock))
+                .setMessage(activity.getString(R.string.message_menu_unblock_confirm))
+                .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
+                    listener.onPositive();
+                })
+                .setNegativeButton(android.R.string.cancel, null)
+                .show();
+    }
+
+    public interface IOnLoginListener {
+        void onPositive(String pwd);
+    }
+
     public interface IOnBlockListener {
         void onBlock(long time);
+    }
+
+    public interface IOnPositiveListener {
+        void onPositive();
     }
 
 }

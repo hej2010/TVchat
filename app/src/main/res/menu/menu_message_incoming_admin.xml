@@ -6,14 +6,14 @@
         android:title="@string/message_menu_copy" />
 
     <item
-        android:id="@+id/report"
-        android:title="@string/message_menu_report" />
-
-    <item
         android:id="@+id/delete"
         android:title="@string/message_menu_delete" />
 
     <item
         android:id="@+id/block"
         android:title="@string/message_menu_block" />
+
+    <item
+        android:id="@+id/unblock"
+        android:title="@string/message_menu_unblock" />
 </menu>

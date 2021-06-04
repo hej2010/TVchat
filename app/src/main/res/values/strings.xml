@@ -8,6 +8,9 @@
     <string name="message_menu_report">Anmäl</string>
     <string name="message_menu_delete">Radera</string>
     <string name="message_menu_block">Blockera</string>
+    <string name="message_menu_block_confirm">Är du säker på att du vill blockera användaren?</string>
+    <string name="message_menu_unblock_confirm">Är du säker på att du vill avblockera användaren?</string>
+    <string name="message_menu_unblock">Avblockera</string>
     <string name="block_for_2min">Blockera i 2 minuter</string>
     <string name="block_for_5min">Blockera i 5 minuter</string>
     <string name="block_for_15min">Blockera i 15 minuter</string>
@@ -30,6 +33,9 @@
     <string name="profile_other">Annan persons profilbild</string>
     <string name="channel_text">Visas nu: %1$s</string>
     <string name="channel_menu_help">Hjälp</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nej</string>
+    <string name="cancel">Avbryt</string>
 
     <string name="my_profile">Min profil</string>
     <string name="about">Om</string>
