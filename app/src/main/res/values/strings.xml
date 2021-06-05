@@ -60,7 +60,7 @@
     <string name="profile_save_already_taken">Fel: det namnet är upptaget!</string>
     <string name="fel">Fel: %1$s</string>
 
-    <string name="about_text">TV-babbel är en app där du kan kommentera och diskutera med andra användera det som visas på TV.\n\nVälj en kanal och diskutera det som visas där!</string>
+    <string name="about_text">TV-babbel är en app där du kan kommentera och diskutera med andra användera det som visas på TV.\n\nVälj en kanal och diskutera det som visas där!\n\nGamla meddelanden raderas automatiskt</string>
     <string name="about_rules">Chatt-regler</string>
     <string name="about_rules_content">
         1. Appen är till för att diskutera och kommentera det som visas på TV.\n\n
