@@ -17,8 +17,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.parse.ParseACL;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -36,6 +34,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import se.arctosoft.tvchat.adapters.ChatAdapter;
 import se.arctosoft.tvchat.data.Channel;
 import se.arctosoft.tvchat.data.Message;
+import se.arctosoft.tvchat.flavour.ChatFlavour;
 import se.arctosoft.tvchat.utils.Settings;
 import se.arctosoft.tvchat.utils.Toaster;
 
@@ -56,7 +55,7 @@ public class ChatActivity extends AppCompatActivity {
     private final float[] lastTouchDownXY = new float[2];
     private final AtomicBoolean isCreating = new AtomicBoolean(false);
     private Settings settings;
-    private AdView mAdView;
+    private ChatFlavour chatFlavour;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,9 +82,7 @@ public class ChatActivity extends AppCompatActivity {
 
         settings = new Settings(this);
 
-        mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        chatFlavour = new ChatFlavour(this);
 
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);

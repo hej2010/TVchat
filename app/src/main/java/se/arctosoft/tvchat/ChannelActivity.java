@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.parse.ParseAnonymousUtils;
 import com.parse.ParseConfig;
@@ -28,6 +27,7 @@ import java.util.List;
 
 import se.arctosoft.tvchat.adapters.ChannelAdapter;
 import se.arctosoft.tvchat.data.Channel;
+import se.arctosoft.tvchat.flavour.ChannelFlavour;
 import se.arctosoft.tvchat.utils.MyHttpUtils;
 import se.arctosoft.tvchat.utils.Toaster;
 
@@ -41,13 +41,14 @@ public class ChannelActivity extends AppCompatActivity {
     private LinearProgressIndicator progressBar;
     private Button btnProfile, btnAbout;
     private long lastLoadChannels;
+    private ChannelFlavour channelFlavour;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_channel);
 
-        MobileAds.initialize(this);
+        channelFlavour = new ChannelFlavour(this);
 
         ParseConfig.getInBackground((config, e) -> {
             int minVersion = config.getInt(CONFIG_MIN_VERSION);
