@@ -60,7 +60,7 @@
     <string name="profile_save_already_taken">Fel: det namnet är upptaget!</string>
     <string name="fel">Fel: %1$s</string>
 
-    <string name="about_text">TV-babbel är en app där du kan kommentera och diskutera med andra användera det som visas på TV.\n\nVälj en kanal och diskutera det som visas där!\n\nGamla meddelanden raderas automatiskt</string>
+    <string name="about_text">TV-babbel är en app där du kan kommentera och diskutera med andra användare det som visas på TV.\n\nVälj en kanal och diskutera det som visas där!\n\nGamla meddelanden raderas automatiskt.</string>
     <string name="about_rules">Chatt-regler</string>
     <string name="about_rules_content">
         1. Appen är till för att diskutera och kommentera det som visas på TV.\n\n
@@ -100,7 +100,8 @@
         Vi använder kakor för att förstå och spara dina preferenser för framtida besök och för att visa annonser.\n\n
 
         Delar vi information med tredjepart?\n
-        - Data som överförs till tredje-part är kakor och annonserings-ID:t. Vi säljer, delar eller på annat sätt överför inte din övriga personliga information till tredjepart.
+        - Data som överförs till tredje-part är kakor och annonserings-ID:t. Användarikoner genereras med hjälp av Gravatar.\n
+        Vi säljer, delar eller på annat sätt överför inte din övriga personliga information till tredjepart.
         Din data lagras på servrar i Sverige, men kan komma att delas med externa servrar och användare som befinner sig både i Sverige och i andra länder.
         Din data kan kommas att delas med (lokala) myndigheter, polisväsenden och andra aktörer i händelse av misstanke om brott och för att följa de lagar och regler som gäller.
 \n\n
