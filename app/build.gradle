@@ -19,10 +19,12 @@ android {
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            resValue "string", "BannerMainAdId", "ca-app-pub-3940256099942544/6300978111" // test ads
         }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            resValue "string", "BannerMainAdId", "ca-app-pub-4450154628850316/2578777631"
         }
     }
     compileOptions {
@@ -45,4 +47,5 @@ dependencies {
     //implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1' // for logging API calls to LogCat
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'com.github.bumptech.glide:glide:4.12.0'
+    implementation 'com.google.android.gms:play-services-ads:20.1.0'
 }

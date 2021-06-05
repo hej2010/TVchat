@@ -17,6 +17,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.parse.ParseACL;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -54,6 +56,7 @@ public class ChatActivity extends AppCompatActivity {
     private final float[] lastTouchDownXY = new float[2];
     private final AtomicBoolean isCreating = new AtomicBoolean(false);
     private Settings settings;
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +82,10 @@ public class ChatActivity extends AppCompatActivity {
         }
 
         settings = new Settings(this);
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);

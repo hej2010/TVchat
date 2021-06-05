@@ -14,7 +14,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TVchat">
-        <activity android:name=".ReportsActivity"></activity>
+        <meta-data
+            android:name="com.google.android.gms.ads.DELAY_APP_MEASUREMENT_INIT"
+            android:value="true" />
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-4450154628850316~5312752183"/>
+
+        <activity android:name=".ReportsActivity" />
         <activity android:name=".TermsActivity" />
         <activity android:name=".LauncherActivity">
             <intent-filter>

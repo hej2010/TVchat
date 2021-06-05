@@ -8,6 +8,7 @@
     <string name="launcher_button_text">Jag har läst och godkänner</string>
     <string name="launcher_button_pp">Integritetspolicy</string>
     <string name="terms">Villkor</string>
+    <string name="outdated_app_version">Uppdatera appen till den senaste versionen!</string>
 
     <string name="message_hint">Skriv något</string>
     <string name="message_menu_copy">Kopiera</string>

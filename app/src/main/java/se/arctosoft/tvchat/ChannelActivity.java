@@ -11,8 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.parse.ParseAnonymousUtils;
+import com.parse.ParseConfig;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -27,9 +29,11 @@ import java.util.List;
 import se.arctosoft.tvchat.adapters.ChannelAdapter;
 import se.arctosoft.tvchat.data.Channel;
 import se.arctosoft.tvchat.utils.MyHttpUtils;
+import se.arctosoft.tvchat.utils.Toaster;
 
 public class ChannelActivity extends AppCompatActivity {
     private static final String TAG = "ChannelActivity";
+    private static final String CONFIG_MIN_VERSION = "min_version";
 
     private RecyclerView rvChannels;
     private List<Channel> mChannels;
@@ -42,6 +46,17 @@ public class ChannelActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_channel);
+
+        MobileAds.initialize(this);
+
+        ParseConfig.getInBackground((config, e) -> {
+            int minVersion = config.getInt(CONFIG_MIN_VERSION);
+            Log.d(TAG, String.format("Yay! The number is %d!", minVersion));
+            if (BuildConfig.VERSION_CODE < minVersion && !isFinishing() && !isDestroyed()) {
+                Toaster.getInstance(this).showLong(getString(R.string.outdated_app_version));
+                finishAffinity();
+            }
+        });
 
         init();
     }
