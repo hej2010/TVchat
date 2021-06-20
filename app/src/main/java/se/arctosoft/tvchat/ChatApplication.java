@@ -7,6 +7,7 @@ import com.parse.ParseObject;
 
 import se.arctosoft.tvchat.data.Channel;
 import se.arctosoft.tvchat.data.Message;
+import se.arctosoft.tvchat.data.Report;
 
 public class ChatApplication extends Application {
     @Override
@@ -15,6 +16,7 @@ public class ChatApplication extends Application {
 
         ParseObject.registerSubclass(Message.class);
         ParseObject.registerSubclass(Channel.class);
+        ParseObject.registerSubclass(Report.class);
 
         // Use for monitoring Parse network traffic
         /*OkHttpClient.Builder builder = new OkHttpClient.Builder();

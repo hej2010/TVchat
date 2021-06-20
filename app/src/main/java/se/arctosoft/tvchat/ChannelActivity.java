@@ -63,7 +63,7 @@ public class ChannelActivity extends AppCompatActivity {
     }
 
     private void init() {
-        rvChannels = findViewById(R.id.rvChannels);
+        rvChannels = findViewById(R.id.recycler_view);
         progressBar = findViewById(R.id.progressBar);
         btnProfile = findViewById(R.id.btnProfile);
         btnProfile.setEnabled(false);

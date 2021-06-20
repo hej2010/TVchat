@@ -157,6 +157,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
                     report.put("u", message.getUserId());
                     report.put("m", message);
                     report.put("b", message.getBody().trim());
+                    report.put("c", message.getChannel());
                     Toaster.getInstance(mActivity).showShort(mActivity.getString(R.string.message_reported));
                     report.saveInBackground(e -> {
                         int pos = holder.getBindingAdapterPosition();
@@ -167,7 +168,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
                     });
                 });
             } else if (id == R.id.delete) {
-                message.deleteInBackground(e -> {
+                Dialogs.showDeleteConfirm(mActivity, () -> message.deleteInBackground(e -> {
                     if (e != null) {
                         e.printStackTrace();
                         Toaster.getInstance(mActivity).showShort(mActivity.getString(R.string.message_deleted_error));
@@ -175,7 +176,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
                         removeMessageAt(holder.getBindingAdapterPosition());
                         Toaster.getInstance(mActivity).showShort(mActivity.getString(R.string.message_deleted));
                     }
-                });
+                }));
             } else if (id == R.id.purge) {
                 Dialogs.showPurgeConfirm(mActivity, () -> {
                     Map<String, Object> map = new HashMap<>();

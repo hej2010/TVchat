@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import se.arctosoft.tvchat.R;
+import se.arctosoft.tvchat.data.Report;
 
 public class Dialogs {
 
@@ -28,7 +29,7 @@ public class Dialogs {
     }
 
     public static void showBlockDialog(@NonNull Activity activity, @NonNull IOnBlockListener listener) {
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(activity, android.R.layout.select_dialog_singlechoice);
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(activity, android.R.layout.select_dialog_item);
         arrayAdapter.add(activity.getString(R.string.block_for_2min));
         arrayAdapter.add(activity.getString(R.string.block_for_5min));
         arrayAdapter.add(activity.getString(R.string.block_for_15min));
@@ -49,6 +50,54 @@ public class Dialogs {
                 .setAdapter(arrayAdapter, (dialog, which) -> {
                     long[] time = new long[]{120000, 300000, 900000, 1800000, 3600000, 10800000, 21600000, 43200000, 86400000, 259200000, 604800000, 1209600000, 2592000000L, 7884000000L};
                     showBlockConfirm(activity, listener, time[which]);
+                })
+                .setNegativeButton(android.R.string.cancel, null)
+                .show();
+    }
+
+    public static void showReportClickedDialog(@NonNull Activity activity, @NonNull IOnReportClickedListener listener, @NonNull Report report) {
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(activity, android.R.layout.select_dialog_item);
+        arrayAdapter.add(activity.getString(R.string.reports_delete));
+        arrayAdapter.add(activity.getString(R.string.reports_edit));
+        arrayAdapter.add(activity.getString(R.string.message_menu_block));
+        arrayAdapter.add(activity.getString(R.string.reports_ignore));
+
+        new MaterialAlertDialogBuilder(activity)
+                .setAdapter(arrayAdapter, (dialog, which) -> {
+                    if (which == 0) {
+                        listener.onDelete();
+                    } else if (which == 1) {
+                        showEditMessageDialog(activity, listener, report);
+                    } else if (which == 2) {
+                        listener.onBlock();
+                    } else if (which == 3) {
+                        listener.onIgnore();
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, null)
+                .show();
+    }
+
+    private static void showEditMessageDialog(@NonNull Activity activity, @NonNull IOnReportClickedListener listener, Report report) {
+        EditText text = new EditText(activity);
+        text.setInputType(InputType.TYPE_TEXT_VARIATION_NORMAL);
+        text.setText(report.getBody());
+        text.setEnabled(true);
+        text.setMaxLines(200);
+        new MaterialAlertDialogBuilder(activity)
+                .setTitle(activity.getString(R.string.about_login))
+                .setView(text)
+                .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> listener.onEdit(text.getText().toString()))
+                .setNegativeButton(android.R.string.cancel, null)
+                .show();
+    }
+
+    public static void showDeleteConfirm(@NonNull Activity activity, @NonNull IOnPositiveListener listener) {
+        new MaterialAlertDialogBuilder(activity)
+                .setTitle(activity.getString(R.string.message_menu_delete))
+                .setMessage(activity.getString(R.string.message_menu_delete_confirm))
+                .setPositiveButton(android.R.string.yes, (dialogInterface, i) -> {
+                    listener.onPositive();
                 })
                 .setNegativeButton(android.R.string.cancel, null)
                 .show();
@@ -98,6 +147,16 @@ public class Dialogs {
 
     public interface IOnBlockListener {
         void onBlock(long time);
+    }
+
+    public interface IOnReportClickedListener {
+        void onDelete();
+
+        void onBlock();
+
+        void onIgnore();
+
+        void onEdit(String newString);
     }
 
     public interface IOnPositiveListener {

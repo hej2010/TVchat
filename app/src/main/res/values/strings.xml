@@ -20,6 +20,7 @@
     <string name="message_menu_unblock">Avblockera</string>
     <string name="message_menu_report_confirm">Är du säker på att du vill rapportera det här meddelandet för granskning?</string>
     <string name="message_menu_block_confirm">Är du säker på att du vill blockera användaren?</string>
+    <string name="message_menu_delete_confirm">Är du säker på att du vill radera meddelandet?</string>
     <string name="message_menu_unblock_confirm">Är du säker på att du vill avblockera användaren?</string>
     <string name="message_menu_purge_confirm">Är du säker på att du vill radera alla meddelanden från denna användare?</string>
     <string name="block_for_2min">Blockera i 2 minuter</string>
@@ -52,6 +53,11 @@
     <string name="my_profile">Min profil</string>
     <string name="about">Om</string>
     <string name="about_login">Test</string>
+
+    <string name="reports_menu_refresh">Uppdatera</string>
+    <string name="reports_delete">Radera meddelandet</string>
+    <string name="reports_edit">Ändra meddelandet</string>
+    <string name="reports_ignore">Ta bort anmälan</string>
 
     <string name="profile_allowed_digits">abcdefghijklmnopqrstuvwxyzåäöABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ0123456789-_</string>
     <string name="profile_username_hint">Visningsnamn</string>

@@ -129,7 +129,7 @@ public class ChatActivity extends AppCompatActivity {
         // Find the text field and button
         etMessage = findViewById(R.id.etMessage);
         ImageView btSend = findViewById(R.id.btSend);
-        rvChat = findViewById(R.id.rvChat);
+        rvChat = findViewById(R.id.recycler_view);
         mMessages = new LinkedList<>();
         mFirstLoad = true;
         mAdapter = new ChatAdapter(ChatActivity.this, ParseUser.getCurrentUser().getObjectId(), mMessages, lastTouchDownXY);
