@@ -217,6 +217,19 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
                         }
                     });
                 });
+            } else if (id == R.id.edit) {
+                Dialogs.showEditMessageDialog(mActivity, newString -> {
+                    message.put("b", newString);
+                    message.saveInBackground(e -> {
+                        if (e != null) {
+                            e.printStackTrace();
+                            Toaster.getInstance(mActivity).showShort("Failed to save: " + e.getMessage());
+                        } else {
+                            Toaster.getInstance(mActivity).showShort("Saved");
+                            //notifyItemChanged(holder.getBindingAdapterPosition());
+                        }
+                    });
+                }, message.getBody());
             }
             return false;
         });

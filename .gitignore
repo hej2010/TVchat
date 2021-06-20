@@ -16,3 +16,4 @@ local.properties
 /.idea/
 /gradle/wrapper/
 /app/release/
+/app/*/release/

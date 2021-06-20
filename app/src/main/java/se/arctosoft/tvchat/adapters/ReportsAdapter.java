@@ -89,14 +89,18 @@ public class ReportsAdapter extends RecyclerView.Adapter<ReportsAdapter.ReportVi
         popupMenu.setOnMenuItemClickListener(item -> {
             int id = item.getItemId();
 
-            if (id == R.id.delete_message) {
-                deleteMessage(report);
-            } else if (id == R.id.edit_message) {
-                Dialogs.showEditMessageDialog(mActivity, newString -> editMessage(report, newString), report);
-            } else if (id == R.id.block_user) {
-                blockUser(report);
-            } else if (id == R.id.ignore_report) {
+            if (report.getMessage() == null) {
                 ignoreReport(report);
+            } else {
+                if (id == R.id.delete_message) {
+                    deleteMessage(report);
+                } else if (id == R.id.edit_message) {
+                    Dialogs.showEditMessageDialog(mActivity, newString -> editMessage(report, newString), report.getBody());
+                } else if (id == R.id.block_user) {
+                    blockUser(report);
+                } else if (id == R.id.ignore_report) {
+                    ignoreReport(report);
+                }
             }
 
             return false;

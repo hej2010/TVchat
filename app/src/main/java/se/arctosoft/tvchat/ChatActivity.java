@@ -257,6 +257,16 @@ public class ChatActivity extends AppCompatActivity {
                 }
             });
         });
+        subscriptionHandling.handleEvent(SubscriptionHandling.Event.UPDATE, (query, object) -> {
+            Log.e(TAG, "setupLiveQueries: updated " + object);
+            // RecyclerView updates need to be run on the UI thread
+            runOnUiThread(() -> {
+                int index = mMessages.indexOf(object);
+                if (index >= 0) {
+                    mAdapter.notifyItemChanged(index);
+                }
+            });
+        });
     }
 
     void refreshMessages() {

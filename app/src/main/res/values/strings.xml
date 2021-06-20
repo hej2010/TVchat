@@ -41,6 +41,7 @@
     <string name="message_deleted">Raderad!</string>
     <string name="message_deleted_error">Fel: det gick inte att radera!</string>
     <string name="send">Skicka</string>
+    <string name="edit">Ändra</string>
     <string name="profile_me">Min profilbild</string>
     <string name="profile_other">Annan persons profilbild</string>
     <string name="channel_text">Meddelanden idag: %1$d</string>

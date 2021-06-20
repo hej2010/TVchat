@@ -54,14 +54,13 @@ public class Dialogs {
                 .show();
     }
 
-    public static void showEditMessageDialog(@NonNull Activity activity, @NonNull IOnLoginListener listener, Report report) {
+    public static void showEditMessageDialog(@NonNull Activity activity, @NonNull IOnLoginListener listener, String body) {
         EditText text = new EditText(activity);
-        text.setInputType(InputType.TYPE_TEXT_VARIATION_NORMAL);
-        text.setText(report.getBody());
+        text.setText(body);
         text.setEnabled(true);
         text.setMaxLines(200);
         new MaterialAlertDialogBuilder(activity)
-                .setTitle(activity.getString(R.string.about_login))
+                .setTitle(activity.getString(R.string.reports_edit))
                 .setView(text)
                 .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> listener.onPositive(text.getText().toString()))
                 .setNegativeButton(android.R.string.cancel, null)
