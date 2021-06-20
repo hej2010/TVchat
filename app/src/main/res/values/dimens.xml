@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="chat_item_time_text_size">10sp</dimen>
+    <dimen name="chat_item_time_padding_top">2dp</dimen>
+    <dimen name="chat_item_time_margin">8dp</dimen>
+</resources>

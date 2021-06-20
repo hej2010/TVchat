@@ -30,9 +30,9 @@ import java.util.List;
 import java.util.Map;
 
 import se.arctosoft.tvchat.R;
-import se.arctosoft.tvchat.utils.Settings;
 import se.arctosoft.tvchat.data.Message;
 import se.arctosoft.tvchat.utils.Dialogs;
+import se.arctosoft.tvchat.utils.Settings;
 import se.arctosoft.tvchat.utils.Toaster;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHolder> {
@@ -102,6 +102,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
                 .into(holder.icon);
         holder.body.setText(message.getBody());
         holder.name.setText(message.getUserName()); // in addition to message show user ID
+        holder.date.setText(getTimeSince(message.getCreatedAt().getTime()));
         holder.root.setOnClickListener(v -> {
             Log.e(TAG, "onBindViewHolder: pos " + position);
             float x = lastTouchDownXY[0];
@@ -109,6 +110,20 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
 
             showPopup(holder, message, x, y, isOwnMessage);
         });
+    }
+
+    private String getTimeSince(long time) {
+        final long diff = System.currentTimeMillis() - time;
+        int s = (int) (diff / 1000);
+        if (s < 60) { // under en minut
+            return s + " s";
+        }
+        s = s / 60;
+        if (s < 60) { // under en timme
+            return s + " min";
+        }
+        //s = s / 24;
+        return "";
     }
 
     private void showPopup(MessageViewHolder holder, Message message, float x, float y, boolean isOwnMessage) {
@@ -219,7 +234,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
 
     static class MessageViewHolder extends RecyclerView.ViewHolder {
         private final ImageView icon;
-        private final TextView body, name;
+        private final TextView body, name, date;
         private final View root;
 
         private MessageViewHolder(View itemView) {
@@ -228,6 +243,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
             icon = itemView.findViewById(R.id.ivIcon);
             body = itemView.findViewById(R.id.tvBody);
             name = itemView.findViewById(R.id.tvName);
+            date = itemView.findViewById(R.id.tvDate);
         }
     }
 

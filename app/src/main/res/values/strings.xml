@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">TV-babbel</string>
     <string name="channels_title">TV-babbel</string>
-    <string name="channels_message">Chatta med andra och kommentera det som visas på TV!\nFölj reglerna och var vänliga mot varandra och det som visas på TV.</string>
+    <string name="channels_message">Chatta med andra och kommentera det som visas på TV!\nFölj reglerna och var vänliga mot varandra.\n
+        Appen är under utveckling!</string>
 
     <string name="launcher_title">Välkommen till TV-babbel!</string>
     <string name="launcher_subtitle">Innan du börjar använda appen, läs och acceptera integritetspolicyn och villkoren.</string>
