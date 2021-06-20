@@ -9,8 +9,8 @@ android {
         applicationId "se.arctosoft.tvchat"
         minSdkVersion 24
         targetSdkVersion 30
-        versionCode 2
-        versionName "1.1"
+        versionCode 3
+        versionName "1.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -55,7 +55,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     implementation 'com.github.parse-community.Parse-SDK-Android:parse:1.26.0'
-    implementation 'com.github.parse-community:ParseLiveQuery-Android:1.2.2' // for Parse Live Queries
+    implementation 'com.github.parse-community:ParseLiveQuery-Android:1.2.2'
+    // for Parse Live Queries
     //implementation 'com.parse.bolts:bolts-android:1.4.0' // also required by Parse Live Queries
     //implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1' // for logging API calls to LogCat
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
