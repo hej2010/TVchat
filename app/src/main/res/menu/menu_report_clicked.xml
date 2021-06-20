@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/delete_message"
+        android:title="@string/reports_delete" />
+    <item
+        android:id="@+id/edit_message"
+        android:title="@string/reports_edit" />
+    <item
+        android:id="@+id/block_user"
+        android:title="@string/message_menu_block" />
+    <item
+        android:id="@+id/ignore_report"
+        android:title="@string/reports_ignore" />
+</menu>

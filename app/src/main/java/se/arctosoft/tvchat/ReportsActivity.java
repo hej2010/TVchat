@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +31,7 @@ public class ReportsActivity extends AppCompatActivity {
     private ReportsAdapter mAdapter;
 
     private long lastLoadChannels;
+    private final float[] lastTouchDownXY = new float[2];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,12 +74,17 @@ public class ReportsActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
         mReports = new ArrayList<>();
 
-        mAdapter = new ReportsAdapter(this, mReports);
+        mAdapter = new ReportsAdapter(this, mReports, lastTouchDownXY);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setAdapter(mAdapter);
         recyclerView.setLayoutManager(linearLayoutManager);
+    }
 
-
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        lastTouchDownXY[0] = event.getX();
+        lastTouchDownXY[1] = event.getY();
+        return super.dispatchTouchEvent(event);
     }
 
     private void loadReports() {
